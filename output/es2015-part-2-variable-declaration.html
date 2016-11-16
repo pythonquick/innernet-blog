@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="Part 2 in the series of ES2015 looks at a new way of defining strings, with the ability to substitute variables into place-holders. Template Strings In JavaScript, strings can be created using a pair of double-quotes: " or a pair of single-quotes: ' With ES2015, there's another quotation mark that can ..." />
+<meta name="keywords" content="JavaScript, ES2015">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="ES2015 Part 2: Variable declaration"/>
+<meta property="og:description" content="Part 2 in the series of ES2015 looks at a new way of defining strings, with the ability to substitute variables into place-holders. Template Strings In JavaScript, strings can be created using a pair of double-quotes: " or a pair of single-quotes: ' With ES2015, there's another quotation mark that can ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/es2015-part-2-variable-declaration.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-09-02 10:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES2015"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; ES2015 Part 2: Variable declaration</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="es2015-part-2-variable-declaration">ES2015 Part 2: Variable declaration</h1>
+    <p>
+          Posted on Fri 02 September 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>Part 2 in the series of ES2015 looks at a new way of defining strings, with the ability to substitute variables into place-holders.</p>
+<h1>Template Strings</h1>
+<p>In JavaScript, strings can be created using a pair of double-quotes: " or a pair of single-quotes: '
+With ES2015, there's another quotation mark that can be used to define strings: the back tick: `</p>
+<p>Strings declared with the back tick have some new options:</p>
+<ul>
+<li>It is possible to insert variable substitutions or expressions. This is done by inserting a ${} inside the string. Any expression can be inserted between the { and }, whether it be a variable name, numeric expression or even the result of a function call</li>
+<li>Strings can span multiple lines. It is not necessary to insert newline characters (\n). One can simply define a string that spans multiple lines that already includes the newline characters</li>
+</ul>
+<p>Here's an example:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">count</span><span class="p">(</span><span class="nx">legs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">intro</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="nx">school</span><span class="p">,</span> <span class="nx">animal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="sb">`Introducing:</span>
+<span class="sb">    </span><span class="si">${</span><span class="nx">person</span><span class="si">}</span><span class="sb"> from </span><span class="si">${</span><span class="nx">school</span><span class="si">}</span><span class="sb">.</span>
+<span class="sb">    Owns </span><span class="si">${</span><span class="nx">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">animal</span><span class="si">}</span><span class="sb">s`</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="nx">intro</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The call to the intro function will return the following string:</p>
+<pre>
+Introducing:
+    John from MIT. 
+    Owns 9 birds
+</pre>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es2015.html">ES2015</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

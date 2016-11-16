@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="The notes for this tutorial do not contain many notes. See the source code for the different array operations. The person.js source file /** * Simple Person class. * Represents a person with name and age. */ function Person(name, age) { this.age = age; this.name = name; this.toString = function() { return this.name ..." />
+<meta name="keywords" content="JavaScript, ES5">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="Arrays"/>
+<meta property="og:description" content="The notes for this tutorial do not contain many notes. See the source code for the different array operations. The person.js source file /** * Simple Person class. * Represents a person with name and age. */ function Person(name, age) { this.age = age; this.name = name; this.toString = function() { return this.name ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/arrays.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-01-13 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES5"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; Arrays</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="arrays">Arrays</h1>
+    <p>
+          Posted on Wed 13 January 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>The notes for this tutorial do not contain many notes. See the source code for the different array operations. </p>
+<h1>The person.js source file</h1>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Simple Person class.</span>
+<span class="cm"> * Represents a person with name and age.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">+</span> <span class="s2">&quot; years&quot;</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</pre></div>
+
+
+<p><strong>Note:</strong></p>
+<p>The toString method is necessary to give the instances of the Person class a textual representation (instead of the default "[Object object]" name).</p>
+<p>The following source uses various methods of the array instance.</p>
+<p>Note: in the example below, only the following array methods will actually change the array object on which they're invoked:</p>
+<ul>
+<li>push</li>
+<li>splice</li>
+<li>sort</li>
+</ul>
+<p>All the other array methods will return a new array as the return value</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">how_to_add_item_to_array</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">LIST</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+    <span class="c1">// following appears to work in Chrome:</span>
+    <span class="c1">// (alternative to the push methd)</span>
+    <span class="c1">// LIST[LIST.length] = &quot;bla&quot;;</span>
+    <span class="c1">// but better use the &quot;official&quot; way with the push method</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_remove_item_from_array</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Remove item from list using the &quot;splice&quot; string method.</span>
+    <span class="c1">// The splice method takes two arguments:</span>
+    <span class="c1">// 1) start index</span>
+    <span class="c1">// 2) number of items to delete</span>
+    <span class="nx">LIST</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_get_sub_range_from_array</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Slice:</span>
+    <span class="c1">// slice takes two arguments:</span>
+    <span class="c1">// 1) start index (negative index counts from the end)</span>
+    <span class="c1">// 2) end index (exclusive). If not used, will slice until the end of array</span>
+    <span class="nx">LIST</span> <span class="o">=</span> <span class="nx">LIST</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_join_items_into_concatenated_string</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Joining items into a concatenated string:</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">LIST</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; and &quot;</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_find_position_within_array</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">LIST</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">5443</span><span class="p">);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;position is &quot;</span> <span class="o">+</span> <span class="nx">index</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_sort_simple_values</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">LIST</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">how_to_sort_complex_values</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">LIST</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">ageSorter</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">var</span> <span class="nx">LIST</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">544</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">22</span><span class="p">];</span>
+
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">// COMMENT OUT THE FOLLOWING GROUPS</span>
+    <span class="c1">// TO TRY THEM OUT</span>
+    <span class="c1">////////////////////////////////////////////////////////////////////////////</span>
+
+    <span class="c1">// how_to_add_item_to_array();</span>
+
+    <span class="c1">// how_to_remove_item_from_array();</span>
+
+    <span class="c1">// how_to_get_sub_range_from_array();</span>
+
+    <span class="c1">// how_to_join_items_into_concatenated_string();</span>
+
+    <span class="c1">// how_to_find_position_within_array();</span>
+
+    <span class="c1">// how_to_sort_simple_values();</span>
+
+    <span class="c1">// LIST = [</span>
+    <span class="c1">//     new Person(&quot;Jack&quot;, 20),</span>
+    <span class="c1">//     new Person(&quot;Maggie&quot;, 29),</span>
+    <span class="c1">//     new Person(&quot;Jose&quot;, 27),</span>
+    <span class="c1">//     new Person(&quot;John&quot;, 39),</span>
+    <span class="c1">//     new Person(&quot;Ziggie&quot;, 66),</span>
+    <span class="c1">//     new Person(&quot;Sally&quot;, 29),</span>
+    <span class="c1">//     new Person(&quot;Argor&quot;, 19)</span>
+    <span class="c1">// ];</span>
+    <span class="c1">// how_to_sort_complex_values();</span>
+
+    <span class="nx">displayArray</span><span class="p">(</span><span class="nx">LIST</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+<span class="kd">function</span> <span class="nx">displayArray</span><span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">myListThingie</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&lt;</span><span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">list</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+        <span class="nx">myListThingie</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="nx">item</span> <span class="o">+</span> <span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">$resultDiv</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#array-display&#39;</span><span class="p">);</span>
+    <span class="nx">$resultDiv</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+    <span class="nx">$resultDiv</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">myListThingie</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">ageSorter</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">age</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es5.html">ES5</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

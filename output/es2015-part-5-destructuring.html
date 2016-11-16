@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="Part 5 in the series of ES2015 deals with destructuring: with arrays and with objects. Array destructuring The following logCoordinate function takes an array as a parameter, and then reads the values from three indexes and assigns them to variables: function logCoordinate(coordinate) { var x = coordinate[1]; var y = coordinate ..." />
+<meta name="keywords" content="JavaScript, ES2015">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="ES2015 Part 5: Destructuring"/>
+<meta property="og:description" content="Part 5 in the series of ES2015 deals with destructuring: with arrays and with objects. Array destructuring The following logCoordinate function takes an array as a parameter, and then reads the values from three indexes and assigns them to variables: function logCoordinate(coordinate) { var x = coordinate[1]; var y = coordinate ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/es2015-part-5-destructuring.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-10-19 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES2015"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; ES2015 Part 5: Destructuring</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="es2015-part-5-destructuring">ES2015 Part 5: Destructuring</h1>
+    <p>
+          Posted on Wed 19 October 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>Part 5 in the series of ES2015 deals with destructuring: with arrays and with objects.</p>
+<h1>Array destructuring</h1>
+<p>The following <code>logCoordinate</code> function takes an array as a parameter, and then reads the values from three indexes and assigns them to variables:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">logCoordinate</span><span class="p">(</span><span class="nx">coordinate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">coordinate</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">coordinate</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">coordinate</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    <span class="k">return</span> <span class="s2">&quot;Your spacial coordinate is (&quot;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">z</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">logCoordinate</span><span class="p">([</span><span class="s2">&quot;5-October-2016&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">22</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>Here the <code>logCoordinate</code> function gets called with an array containing four items: </p>
+<ul>
+<li>A string that represents a calendar date</li>
+<li>The location's x coordinate</li>
+<li>The location's y coordinate</li>
+<li>The location's z coordinate</li>
+</ul>
+<p>The ES2015 destructuring syntax can be used to make these assignments all in one line.
+On the left hand side of the variable declaration is the list of variable names enclosed in square brackets.
+On the right hand side is the array that contains the values to be assigned.</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">logCoordinate</span><span class="p">(</span><span class="nx">coordinate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">[</span><span class="nx">date</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">]</span> <span class="o">=</span> <span class="nx">coordinate</span><span class="p">;</span>
+    <span class="k">return</span> <span class="s2">&quot;Your spacial coordinate is (&quot;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">z</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">logCoordinate</span><span class="p">([</span><span class="s2">&quot;5-October-2016&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">22</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>Note: in this example, we do not need the first array element (the date string).
+In that case, the array destructuring can omit the <code>date</code> variable name. It is still necessary to have a comma before the <code>x</code> variable, to ensure the correct positional value assignment.</p>
+<p>Here's how that looks like:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">logCoordinate</span><span class="p">(</span><span class="nx">coordinate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">[,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">]</span> <span class="o">=</span> <span class="nx">coordinate</span><span class="p">;</span>
+    <span class="k">return</span> <span class="s2">&quot;Your spacial coordinate is (&quot;</span> <span class="o">+</span> <span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nx">z</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">logCoordinate</span><span class="p">([</span><span class="s2">&quot;5-October-2016&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">22</span><span class="p">]);</span>
+</pre></div>
+
+
+<h1>Object destructuring</h1>
+<p>Similar to array destructuring, in ES2015, parts of an object can be assigned to variables.</p>
+<p>To illustrate, let's work with an object. In this example, it's an object that represents the key features of a movie:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">JAWS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Jaws&quot;</span><span class="p">,</span>
+    <span class="nx">year</span><span class="o">:</span> <span class="mi">1975</span><span class="p">,</span>
+    <span class="nx">people</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">director</span><span class="o">:</span> <span class="s2">&quot;Steven Spielberg&quot;</span><span class="p">,</span>
+        <span class="nx">star</span><span class="o">:</span> <span class="s2">&quot;Roy Scheider&quot;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>The following function gets called with the JAWS object:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">year</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">year</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">director</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">director</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">star</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">star</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">JAWS</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The call to movieInfo returns the following string:</p>
+<div class="highlight"><pre><span></span>Jaws played in 1975 directed by Steven Spielberg starring Roy Scheider
+</pre></div>
+
+
+<p>Using ES2012's object destructuring, the variable declaration on the left hand side of the <code>=</code> sign, look like an object declaration with key/value pairs separated by <code>:</code> characters inside curly braces:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">year</span><span class="o">:</span> <span class="nx">year</span><span class="p">}</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">director</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">director</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">star</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">star</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">JAWS</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The first line inside the function uses ES2015's object destructuring to define two variables: title and year. The values for these variables correspond to the "title" and "year" attributes from the movie object.
+The variable name and the key/attribute from the object must not necessarily have the same name. In the above example, there's a lot of repetition because the variable name is the same as the object key.
+In ES2015's object destructuring, there's a shortcut if the variable name and the object key is the same. The above example can be rewritten as follows:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">title</span><span class="p">,</span> <span class="nx">year</span><span class="p">}</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">director</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">director</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">star</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">people</span><span class="p">.</span><span class="nx">star</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">JAWS</span><span class="p">);</span>
+</pre></div>
+
+
+<p>That's syntax takes some getting used to, but it's nice and concise.
+Note, that we still have separate assignment statements for director and star. Those are attributes of the nested object under the "people" attribute.
+Nested attributes can also be used in ES2015's object destructuring, by specifying the nested object's key and using another set of curly braces. 
+Here's another that assigns all four variables in one object destructuring line:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">title</span><span class="p">,</span> <span class="nx">year</span><span class="p">,</span> <span class="nx">people</span><span class="o">:</span> <span class="p">{</span><span class="nx">director</span><span class="p">,</span> <span class="nx">star</span><span class="p">}}</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">JAWS</span><span class="p">);</span>
+</pre></div>
+
+
+<p>That looks very concise!</p>
+<p>The object destructuring can even appear in the parameter list. This way, the function receives four parameter values but they come from a single object passed in as an argument:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">({</span><span class="nx">title</span><span class="p">,</span> <span class="nx">year</span><span class="p">,</span> <span class="nx">people</span><span class="o">:</span> <span class="p">{</span><span class="nx">director</span><span class="p">,</span> <span class="nx">star</span><span class="p">}})</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">JAWS</span><span class="p">);</span>
+</pre></div>
+
+
+<p>This is the shortest version so far, but it is questionable whether it is easier to understand. Better use the version that takes a single <code>movie</code> object parameter.</p>
+<p>Finally, when destructuring objects, the source object (on the right hand side of the <code>=</code> sign) might not have the attributes specified on the left hand side of the <code>=</code> sign.
+In that case, it's possible to supply a default value. Here's an example that takes a <code>SULLY</code> movie object that's missing the <code>year</code> attribute.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">SULLY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Sully&quot;</span><span class="p">,</span>
+    <span class="nx">people</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">director</span><span class="o">:</span> <span class="s2">&quot;Clint Eastwood&quot;</span><span class="p">,</span>
+        <span class="nx">star</span><span class="o">:</span> <span class="s2">&quot;Tom Hanks&quot;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">movieInfo</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="p">{</span><span class="nx">title</span><span class="p">,</span> <span class="nx">year</span> <span class="o">=</span> <span class="mi">2016</span><span class="p">,</span> <span class="nx">people</span><span class="o">:</span> <span class="p">{</span><span class="nx">director</span><span class="p">,</span> <span class="nx">star</span><span class="p">}}</span> <span class="o">=</span> <span class="nx">movie</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; played in &#39;</span> <span class="o">+</span> <span class="nx">year</span> <span class="o">+</span> <span class="s1">&#39; directed by &#39;</span> <span class="o">+</span> <span class="nx">director</span> <span class="o">+</span> <span class="s1">&#39; starring &#39;</span> <span class="o">+</span> <span class="nx">star</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">movieInfo</span><span class="p">(</span><span class="nx">SULLY</span><span class="p">);</span>
+</pre></div>
+
+
+<h1>Default parameter values</h1>
+<p>Last topic is the ability to specify default parameter values, even though it's not directly related to destructuring. When using destructuring inside function parameter lists, one can use default values - that's why this topic made it into "Part 3".</p>
+<p>In JavaScript, function parameters are optional. Even if the function declares two parameters, the function can still be called with zero, one or many parameters. </p>
+<p>Let's say we have a function that takes two parameters: an amount and a tax percentage and it returns the after-tax amount:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">totalAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">taxPercentage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">amount</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">+</span> <span class="nx">taxPercentage</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">totalAmount</span><span class="p">(</span><span class="mf">25.00</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Here we call the function with two arguments: the amount 25 and tax percentage of 6.</p>
+<p>What if the tax does not apply? The tax percentage could be zero and it would be nice to let it default to zero if the second argument is not passed in.
+Here's one way of achieving this, by checking if the parameter is undefined. Here we provide a default value of 0 if the parameter was not supplied:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">totalAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">taxPercentage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">taxPercentage</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">taxPercentage</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">amount</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">+</span> <span class="nx">taxPercentage</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">totalAmount</span><span class="p">(</span><span class="mf">25.00</span><span class="p">);</span>
+</pre></div>
+
+
+<p>In ES2015 the default value can be specified in the function's parameter list directly:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">totalAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">taxPercentage</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">amount</span> <span class="o">*</span> <span class="p">(</span><span class="mi">100</span> <span class="o">+</span> <span class="nx">taxPercentage</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">totalAmount</span><span class="p">(</span><span class="mf">25.00</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Nice!</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es2015.html">ES2015</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

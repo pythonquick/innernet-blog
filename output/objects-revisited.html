@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="This section serves as a review of Objects in JavaScript, and visualizing their structure. At their core, JavaScript objects are very simple. They are basically a container that hold zero or more key-value pairs. The simplest object is this one: var serverInfo = {}; Here the variable named serverInfo contains an object ..." />
+<meta name="keywords" content="JavaScript, ES5">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="Objects Revisited"/>
+<meta property="og:description" content="This section serves as a review of Objects in JavaScript, and visualizing their structure. At their core, JavaScript objects are very simple. They are basically a container that hold zero or more key-value pairs. The simplest object is this one: var serverInfo = {}; Here the variable named serverInfo contains an object ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/objects-revisited.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-02-04 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES5"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; Objects Revisited</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="objects-revisited">Objects Revisited</h1>
+    <p>
+          Posted on Thu 04 February 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>This section serves as a review of Objects in JavaScript, and visualizing their structure.</p>
+<p>At their core, JavaScript objects are very simple. They are basically a container that hold zero or more key-value pairs.</p>
+<p>The simplest object is this one:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">serverInfo</span> <span class="o">=</span> <span class="p">{};</span>
+</pre></div>
+
+
+<p>Here the variable named serverInfo contains an object value. The object exists but is empty - it contains no values.</p>
+<p>Below is an object that we use in the Project Planner's ProjPlanning.js file. It contains several "constant" values that are used in other places of the JavaScript file:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">CONST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">DEFAULT_CADENCE_THRESHOLD</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="nx">ZERO_PLACEHOLDER</span><span class="o">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="nx">TABLE_DATE_DIALOG_HEIGHT</span><span class="o">:</span> <span class="mi">440</span><span class="p">,</span>
+    <span class="nx">MAX_PERIOD_SPAN</span><span class="o">:</span> <span class="mi">17</span><span class="p">,</span>
+    <span class="nx">PERIOD_TYPE</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">MONTHLY</span><span class="o">:</span> <span class="s2">&quot;30&quot;</span><span class="p">,</span>
+        <span class="nx">WEEKLY</span><span class="o">:</span> <span class="s2">&quot;40&quot;</span><span class="p">,</span>
+        <span class="nx">SUMMARY</span><span class="o">:</span> <span class="s2">&quot;10&quot;</span>
+    <span class="p">},</span>
+    <span class="nx">EXPORTCOL_SHOW</span><span class="o">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="nx">EXPORTCOL_HIDE</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>This object has 7 only key-value pairs. We can say it has seven attributes, or keys:</p>
+<ul>
+<li>DEFAULT_CADENCE_THRESHOLD</li>
+<li>ZERO_PLACEHOLDER</li>
+<li>TABLE_DATE_DIALOG_HEIGHT</li>
+<li>MAX_PERIOD_SPAN</li>
+<li>PERIOD_TYPE</li>
+<li>EXPORTCOL_SHOW</li>
+<li>EXPORTCOL_HIDE</li>
+</ul>
+<p>The values for each of these keys are mostly strings or integers. One of the values (attribute PERIOD_TYPE) is an object. So we have a nested object. All attributes (keys) of objects are strings, but the values can be any type (even null). </p>
+<p>Here is a tabular representation of the above CONST object:</p>
+<p><img alt="Object tabular structure" src="https://innernet.io/media/object-structure-tabular.png" /></p>
+<p>Using the string name of the attribute, we can access the corresponding value. </p>
+<p>For example, the following alert will display 17</p>
+<div class="highlight"><pre><span></span><span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="s2">&quot;MAX_PERIOD_SPAN&quot;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>The following alert will display 1</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">setting</span> <span class="o">=</span> <span class="s2">&quot;EXPORTCOL_HIDE&quot;</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="nx">setting</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>If the name of the property is known, it can be used directly (without the square brackets []), using dot (.) notation:</p>
+<div class="highlight"><pre><span></span><span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">.</span><span class="nx">EXPORTCOL_HIDE</span><span class="p">);</span>
+</pre></div>
+
+
+<p>An object can be thought of as a SQL table with two columns: "key" and "value". A value can be accessed if you know the key. For example, the following would select the same value (1) as the above code snippet, if CONST was a SQL table:</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">value</span>
+<span class="k">from</span> <span class="n">CONST</span>
+<span class="k">where</span> <span class="k">key</span> <span class="o">=</span> <span class="s1">&#39;EXPORTCOL_HIDE&#39;</span>
+</pre></div>
+
+
+<p>Try to figure out what value the following snippets will display in the alert message. Some of the following will <em>NOT</em> work, meaning it will not display a proper value. Try to figure out which one.</p>
+<div class="highlight"><pre><span></span><span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">.</span><span class="nx">PERIOD_TYPE</span><span class="p">.</span><span class="nx">MONTHLY</span><span class="p">);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="s2">&quot;EXPORTCOL_SHOW&quot;</span><span class="p">]);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="s2">&quot;PERIOD_TYPE&quot;</span><span class="p">][</span><span class="s2">&quot;WEEKLY&quot;</span><span class="p">]);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="kd">var</span> <span class="nx">period</span> <span class="o">=</span> <span class="s2">&quot;SUMMARY&quot;</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="s2">&quot;PERIOD_TYPE&quot;</span><span class="p">][</span><span class="nx">period</span><span class="p">]);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="kd">var</span> <span class="nx">setting</span> <span class="o">=</span> <span class="s2">&quot;PERIOD_TYPE&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">period</span> <span class="o">=</span> <span class="s2">&quot;MONTHLY&quot;</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="nx">setting</span><span class="p">][</span><span class="nx">period</span><span class="p">]);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="nx">PERIOD_TYPE</span><span class="p">].</span><span class="nx">SUMMARY</span><span class="p">);</span>
+
+<span class="o">:::</span><span class="nx">JavaScript</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">CONST</span><span class="p">[</span><span class="s2">&quot;PERIOD_TYPE.MONTHLY&quot;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>The following random image is merely a space-filler to hide the answer below ;-)</p>
+<p><img alt="random image" src="http://lorempixel.com/500/300/" /></p>
+<p>all of the above will work except for the last two. Note: all attributes (keys) of objects are of type string. When using the dot (.) notation, it is not necessary to use quotation marks. When using square bracket notation ([ ]) one must either use quotation marks, or use a string variable to access the key</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es5.html">ES5</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

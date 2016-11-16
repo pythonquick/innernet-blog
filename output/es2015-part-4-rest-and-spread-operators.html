@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="Part 4 in the series of ES2015 deals with the new JavaScript operators: rest and spread The rest operator The rest operator comes into play when a function receives a variable list of parameters. Before we look at the operator, let's first consider a function that takes a few ..." />
+<meta name="keywords" content="JavaScript, ES2015">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="ES2015 Part 4: Rest and Spread operators"/>
+<meta property="og:description" content="Part 4 in the series of ES2015 deals with the new JavaScript operators: rest and spread The rest operator The rest operator comes into play when a function receives a variable list of parameters. Before we look at the operator, let's first consider a function that takes a few ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/es2015-part-4-rest-and-spread-operators.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-09-23 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES2015"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; ES2015 Part 4: Rest and Spread operators</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="es2015-part-4-rest-and-spread-operators">ES2015 Part 4: Rest and Spread operators</h1>
+    <p>
+          Posted on Fri 23 September 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>Part 4 in the series of ES2015 deals with the new JavaScript operators: rest and spread</p>
+<h1>The rest operator</h1>
+<p>The rest operator comes into play when a function receives a variable list of parameters. Before we look at the operator, let's first consider a function that takes a few parameters:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">registerFamily</span><span class="p">(</span><span class="nx">mother</span><span class="p">,</span> <span class="nx">father</span><span class="p">,</span> <span class="nx">child1</span><span class="p">,</span> <span class="nx">child2</span><span class="p">,</span> <span class="nx">child3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">mother</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">father</span><span class="si">}</span><span class="sb"> have 3 kids: </span><span class="si">${</span><span class="nx">child1</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">child2</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">child3</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="nx">registerFamily</span><span class="p">(</span><span class="s2">&quot;Hilda&quot;</span><span class="p">,</span> <span class="s2">&quot;Frederick&quot;</span><span class="p">,</span> <span class="s2">&quot;Bobby&quot;</span><span class="p">,</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="s2">&quot;Jenny&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Here, the <code>registerFamily</code> function gets called with five parameters. It expects a family of five, so this function is not very versatile. It assumes the mother and father have exactly 3 children.</p>
+<p>To make this more flexible, we can use the <code>arguments</code> keyword. The <code>arguments</code> variable exists inside a function body during the execution of the function. It is an array-like object that we can use to inspect the actual parameters that were passed to the function. This allows us to make the function more flexible:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">registerFamily</span><span class="p">(</span><span class="nx">mother</span><span class="p">,</span> <span class="nx">father</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">mother</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">father</span><span class="si">}</span><span class="sb"> have </span><span class="si">${</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="si">}</span><span class="sb"> kids: `</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">idx</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&lt;</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">response</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The function now has two named parameters: mother and father. The <code>arguments</code> object contains <em>all</em> the parameters. That means, we have to subtract 2 from its length, when dealing with parameters after the mother and father values. It feels clunky.</p>
+<p>In ES2015, we can capture the remaining parameters using the rest operator. The rest operator consists of three periods and a variable name. It collects the remaining parameters that were not named in the parameter list - the "rest" of the parameters.</p>
+<p>Here's what the function looks like with the rest operator to capture any parameters other than the first two:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">registerFamily</span><span class="p">(</span><span class="nx">mother</span><span class="p">,</span> <span class="nx">father</span><span class="p">,</span> <span class="p">...</span><span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">response</span> <span class="o">=</span><span class="sb">`</span><span class="si">${</span><span class="nx">mother</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">father</span><span class="si">}</span><span class="sb"> have </span><span class="si">${</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> kids: `</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&lt;</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span> <span class="o">+=</span> <span class="nx">children</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">&lt;</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">response</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This looks similar to the approach with using the <code>arguments</code> keyword. Note: the children variable does not include the first two parameters as with the <code>arguments</code> object. This makes the loop clearer - no need to subtract 2. We can still simplify the above example by using the array method: <code>join</code>.</p>
+<p>As a quick aside, here's an example of using the array method <code>join</code> to create a concatenated string that contains all array elements:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">nineties</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;George&quot;</span><span class="p">,</span> <span class="s2">&quot;Gerald&quot;</span><span class="p">,</span> <span class="s2">&quot;Herbert&quot;</span><span class="p">,</span> <span class="s2">&quot;Jimmy&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Ronald&quot;</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;U.S. presidents that lived more than 90 years:&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nineties</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">));</span>
+</pre></div>
+
+
+<p>With this convenience method, we can simplify the registerFamily function:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">registerFamily</span><span class="p">(</span><span class="nx">mother</span><span class="p">,</span> <span class="nx">father</span><span class="p">,</span> <span class="p">...</span><span class="nx">children</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">mother</span><span class="si">}</span><span class="sb"> and </span><span class="si">${</span><span class="nx">father</span><span class="si">}</span><span class="sb"> have </span><span class="si">${</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> kids: </span><span class="si">${</span><span class="nx">children</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Another advantage of using the rest operator as opposed to <code>arguments</code> is that the rest variable (in the above example the children array) is a genuine array, whereas <code>arguments</code> behaves like an array (we can query the length and access indexed items). Since the <code>arguments</code> object is not a true array, we cannot use array methods like <code>join</code>.</p>
+<h1>The spread operator</h1>
+<p>The spread operator looks the same as the rest operator: it is three periods followed by a variable name.
+The rest operator is used in the context of a function receiving its parameters.
+The rest operator takes a variable number of items and collects them into an array.
+The spread operator does the opposite: it starts out with a given array and "spreads" the array items out into individual items.</p>
+<p>To explain this, let's first look at the example of using the built-in Math.min function:</p>
+<div class="highlight"><pre><span></span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">46</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The call to <code>Math.min</code> above will return the minimum parameter number passed to it: 26</p>
+<p>Here we have a fixed list of parameters, but what if the number of values are not known ahead of runtime? The numbers could be in an array. How could we still call the Math.min function? One way would be to call the <code>apply</code> method of any function object:</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">46</span><span class="p">];</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">numbers</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Remember, the apply method takes the context object as the first parameter. The context object is what becomes the "this" inside of the function. In this case, there is no context "this" object, so we just pass in a <code>null</code>. The <code>apply</code> function calls the function with the individual parameters taken from the items of the supplied array. How else can we call Math.min using the numbers array? You guessed it - the rest operator!</p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">46</span><span class="p">];</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Here the call to Math.min uses the spread operator to spread the array contents out into individual parameters for the Math.min function.</p>
+<p>The spread operator can also be used to combine two arrays into a new array:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">forties</span> <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">46</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">twenties</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">29</span><span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">twenties</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="p">...</span><span class="nx">forties</span><span class="p">];</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">);</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es2015.html">ES2015</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

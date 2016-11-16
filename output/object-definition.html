@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="This document is a review of the JavaScript class on 01/06/2016 at my company. Note: this tutorial focuses on the JavaScript ES5 specification, and therefore does not cover the ES2016 class syntax. Topics covered: Object Definition Method Chaining Some definitions: This class deals with objects. When talking about ..." />
+<meta name="keywords" content="JavaScript, ES5">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="Object Definition"/>
+<meta property="og:description" content="This document is a review of the JavaScript class on 01/06/2016 at my company. Note: this tutorial focuses on the JavaScript ES5 specification, and therefore does not cover the ES2016 class syntax. Topics covered: Object Definition Method Chaining Some definitions: This class deals with objects. When talking about ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/object-definition.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-01-06 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES5"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; Object Definition</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="object-definition">Object Definition</h1>
+    <p>
+          Posted on Wed 06 January 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>This document is a review of the JavaScript class on 01/06/2016 at my company. Note: this tutorial focuses on the JavaScript ES5 specification, and therefore does not cover the ES2016 <code>class</code> syntax.</p>
+<h1>Topics covered:</h1>
+<ul>
+<li>Object Definition</li>
+<li>Method Chaining</li>
+</ul>
+<h1>Some definitions:</h1>
+<p>This class deals with objects. When talking about objects, people use different names that basically mean the same:</p>
+<ul>
+<li>object : is a type of variable in JavaScript that can hold attributes. For example, an object that represents a rectangle might have two attributes: length and width.</li>
+<li>attribute : is a property / component of an object. </li>
+<li>class : is a special function in JavaScript that can be used to create objects. The class is the template (like a "cookie cutter") for creating the actual objects</li>
+<li>instance : when talking about a class, the objects that are created from a class are "instances" of the class. The class is the "cookie cutter" and the instance is the cookie. The words "instance" and "object" are basically interchangeable. An "object" is the generic term, and "instance" is a more specific object that got created from a class function</li>
+<li>method : is an attribute of an object if that attribute is a function. For example, an object that represents a rectangle might have a function attribute named "draw" which renders the rectangle on a page. In this case "draw" is a method of the rectangle object</li>
+</ul>
+<h1>Object Definition</h1>
+<p>JavaScript objects are created using curly braces. The simplest object is one with no attributes:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
+</pre></div>
+
+
+<p>Attributes can be assigned to an object using dot notation (a period "." character separate the variable name and attribute name) if the name of the attribute is known. For example, to set the "name" and "team" attributes, do the following:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myPlayerDetails</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nx">myPlayerDetails</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Shawn&quot;</span><span class="p">;</span>
+<span class="nx">myPlayerDetails</span><span class="p">.</span><span class="nx">team</span> <span class="o">=</span> <span class="s2">&quot;Seahawks&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Attributes can also be assigned using square brackets. For example, to set the team attribute:</p>
+<div class="highlight"><pre><span></span><span class="nx">myPlayerDetails</span><span class="p">[</span><span class="s2">&quot;team&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Seahawks&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>This square brackets notation is useful if the name of the attribute is dynamic (if it is not known at the time you write the code). For example:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">attribute</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">city</span> <span class="o">===</span> <span class="s2">&quot;Seattle&quot;</span><span class="p">)</span>
+    <span class="nx">attribute</span> <span class="o">=</span> <span class="s2">&quot;team&quot;</span><span class="p">;</span>
+<span class="k">else</span>
+    <span class="nx">attribute</span> <span class="o">=</span> <span class="s2">&quot;typeOfBird&quot;</span><span class="p">;</span>
+<span class="nx">myPlayerDetails</span><span class="p">[</span><span class="nx">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Seahawks&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Assuming the variable <code>city</code> has been defined somewhere, the above snippet will set an attribute named "team" if city is Seattle. If city is not Seattle, the attribute will be named "typeOfBird". In  both cases, the value for the attribute is the string "Seahawks".</p>
+<p>To make objects more useful, they can have function attributes. A function that is an attribute of an object, is called a method. Within the method, the other attributes of the object can be accessed using the <code>this</code> keyword.</p>
+<p>The <code>this</code> keyword refers to the object on which the method function got called. The code snippets below will show some examples where the <code>this</code> keyword is used.</p>
+<h1>Method 1 - Attach attributes to object</h1>
+<p>In the code snippet below, the <code>makeNameRegistry</code> function creates a new object, attaches three attributes to it, and returns it to the caller of the function <code>makeNameRegistry</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">makeNameRegistry</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kd">var</span> <span class="nx">registry</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">registry</span><span class="p">.</span><span class="nx">names</span> <span class="o">=</span> <span class="nx">names</span><span class="p">;</span>
+    <span class="nx">registry</span><span class="p">.</span><span class="nx">addName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="nx">registry</span><span class="p">.</span><span class="nx">removeNameLike</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">idx</span><span class="p">,</span>
+            <span class="nx">name</span><span class="p">,</span>
+            <span class="nx">matchIndex</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">idx</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+            <span class="nx">matchIndex</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">matchIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">registry</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1>Method 2 - Create object with attributes in-place</h1>
+<p>The next code snippet will create and return the same object object as above. The difference is that it creates and defines the object in one step:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">makeNameRegistry</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">names</span><span class="o">:</span> <span class="nx">names</span><span class="p">,</span>
+        <span class="nx">addName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">removeNameLike</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">idx</span><span class="p">,</span>
+                <span class="nx">name</span><span class="p">,</span>
+                <span class="nx">matchIndex</span><span class="p">;</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">idx</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+                <span class="nx">matchIndex</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">matchIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<h1>Method 3 - Use the "new" keyword with a "Class" function</h1>
+<p>The third method of creating objects involves a special function in combination with the <code>new</code> keyword in JavaScript.</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">NameRegistry</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">names</span> <span class="o">=</span> <span class="nx">names</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">addName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">removeNameLike</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">idx</span><span class="p">,</span>
+            <span class="nx">name</span><span class="p">,</span>
+            <span class="nx">matchIndex</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">idx</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+            <span class="nx">matchIndex</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">matchIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>When calling the class function with the <code>new</code> keyword, a new and empty object gets created automatically. Here is an example:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">registry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NameRegistry</span><span class="p">([</span><span class="s2">&quot;Sarah&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Peter&quot;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>Inside the class function, the class function attaches attributes to the newly created object using the <code>this</code> keyword</p>
+<h1>Method Chaining</h1>
+<p>Let's use the NameRegistry class function (defined above) to work with an array of names:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">RANDOM_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Charlie Scott&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Emily Hicks&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Alejandro Potter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lucia Wells&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tamara Collier&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Randolph Dawson&quot;</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">weddingList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NameRegistry</span><span class="p">(</span><span class="nx">RANDOM_NAMES</span><span class="p">);</span>
+<span class="nx">weddingList</span><span class="p">.</span><span class="nx">addName</span><span class="p">(</span><span class="s2">&quot;Judy Harrigan&quot;</span><span class="p">);</span>
+<span class="nx">weddingList</span><span class="p">.</span><span class="nx">addName</span><span class="p">(</span><span class="s2">&quot;Jeff Shoneman&quot;</span><span class="p">);</span>
+<span class="nx">weddingList</span><span class="p">.</span><span class="nx">removeNameLike</span><span class="p">(</span><span class="s2">&quot;o&quot;</span><span class="p">);</span>
+<span class="nx">weddingList</span><span class="p">.</span><span class="nx">removeNameLike</span><span class="p">(</span><span class="s2">&quot;Brady&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Here we create one instance of the NameRegistry class and store it in the variable named "weddingList". Then we call the addName method twice on the wedding instance/object. Next, we call the removeNameLike method twice.</p>
+<p>Method chaining means we can chain multiple method calls together on the source instance/object. Here is what we would like to do:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">RANDOM_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Charlie Scott&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Emily Hicks&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Alejandro Potter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lucia Wells&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tamara Collier&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Randolph Dawson&quot;</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">weddingList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NameRegistry</span><span class="p">(</span><span class="nx">RANDOM_NAMES</span><span class="p">);</span>
+<span class="nx">weddingList</span>
+    <span class="p">.</span><span class="nx">addName</span><span class="p">(</span><span class="s2">&quot;Judy Harrigan&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">addName</span><span class="p">(</span><span class="s2">&quot;Jeff Shoneman&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">removeNameLike</span><span class="p">(</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">removeNameLike</span><span class="p">(</span><span class="s2">&quot;Brady&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Note: there is no repetition of the weddingList variable and it reads more naturally. Think of it this way:</p>
+<div class="highlight"><pre><span></span>To the wedding list, add &quot;Judy Harrigan&quot; and &quot;Jeff Shoneman&quot;. Next, remove any names that contain &quot;o&quot; and remove names that contain &quot;Brady&quot;
+</pre></div>
+
+
+<p>In order for method chaining to work, each method call / invocation must return the source object. That way, the next method call has an object (the same one) to operate on. </p>
+<p>To make the above method chaining work, we need to modify the methods of the NameRegistry class. Notice that each method now returns the source object by returning <code>this</code>   :</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">NameRegistry</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">names</span> <span class="o">=</span> <span class="nx">names</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">addName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">removeNameLike</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">idx</span><span class="p">,</span>
+            <span class="nx">name</span><span class="p">,</span>
+            <span class="nx">matchIndex</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">idx</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">idx</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">idx</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+            <span class="nx">matchIndex</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">partOfName</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">matchIndex</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es5.html">ES5</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="The following example uses jQuery to handle browser events. The event-handling can be done with raw DOM objects, but jQuery provides a nice interface for dealing with the DOM. Also, some browsers have different DOM object implementation and behavior. jQuery takes care of any differences between browsers and versions and ..." />
+<meta name="keywords" content="JavaScript, jQuery">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="Event handling with jQuery"/>
+<meta property="og:description" content="The following example uses jQuery to handle browser events. The event-handling can be done with raw DOM objects, but jQuery provides a nice interface for dealing with the DOM. Also, some browsers have different DOM object implementation and behavior. jQuery takes care of any differences between browsers and versions and ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/event-handling-with-jquery.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-12-22 00:00:00-05:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="jQuery"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; Event handling with jQuery</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="event-handling-with-jquery">Event handling with jQuery</h1>
+    <p>
+          Posted on Tue 22 December 2015 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>The following example uses jQuery to handle browser events. The event-handling can be done with raw DOM objects, but jQuery provides a nice interface for dealing with the DOM. Also, some browsers have different DOM object implementation and behavior. jQuery takes care of any differences between browsers and versions and provides a consistent interface for handling page elements and events.</p>
+<p>jQuery provides the <code>on</code> method. Once you selected the target elements using a jQuery selector, you can attach event-handler functions. </p>
+<p>Here is a sample HTML page with a table:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#39;stylesheet&#39;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#39;text/css&#39;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#39;index.css&#39;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">table</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;MyTable&#39;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Team<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+
+            <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">&gt;</span>Judy<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nt">td</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">&gt;</span>Mariners<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">&gt;</span>Jeff<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nt">td</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;e&#39;</span><span class="p">&gt;</span>Phillies<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;lib/jquery.js&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;index.js&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>You can see the table has one heading row with heading cells (<code>th</code>) and two rows of regular cells (<code>td</code>). The page imports the jquery.js file which is needed for jQuery. 
+The other imported script file is index.js and looks as follows:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">headingClicked</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;You clicked cell a heading&#39;</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">doMouseOver</span><span class="p">(</span><span class="nx">coolMouseEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">coolMouseEvent</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">);</span>
+    <span class="nx">element</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffaaaa&#39;</span><span class="p">);</span> <span class="c1">// light red</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">doMouseOut</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">);</span>
+    <span class="nx">element</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;background&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffffff&#39;</span><span class="p">);</span> <span class="c1">// white</span>
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#MyTable th&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">headingClicked</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#MyTable td&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="nx">doMouseOver</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#MyTable td&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span> <span class="nx">doMouseOut</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>When the page loaded, the function that was passed into the jQuery ready function will be called (see the bottom part of the JavaScript file above).
+Here, it sets up three event handlers:</p>
+<ul>
+<li>When the user clicks a <code>th</code> element that has a parent element with the id "MyTable", the headingClicked function will be called</li>
+<li>When the user's mouse moves over a <code>td</code> element that's inside the MyTable table, the <code>doMouseOver</code> function will be called</li>
+<li>When he user's mouse moves out of that <code>td</code> element, the <code>doMouseOut</code> function will be called</li>
+</ul>
+<p>Notice that the three event-handling functions (<code>cellClicked</code>, <code>doMouseOver</code> and <code>doMouseOut</code>) do not get called when setting up the event-handling. The function itself gets passed in as argument. It is only at the time when the event actually occurs that the function will get called by the browser and jQuery. </p>
+<p>When these event-handling functions get called, they automatically get called with one argument: an event object that contains more details about the event that has just occurred. The event-handling function can use this event argument but does not have to.</p>
+<p>In our example, the click-handling function (<code>headingClicked</code>) only cares about the fact that the heading was clicked. It doesn't need to look at more specifics of the event. In that case, it does not define an argument. It still gets passed in the argument, but it doesn't reference it in an argument variable.</p>
+<p>The other two mouse-handling functions (<code>doMouseOver</code> and <code>doMouseOut</code>) <em>do very much</em> care about the specifics of the event. They need to set the background color of the cell where the mouse moved over (or out of). They read the <code>currentTarget</code> object from the event object, which is the raw DOM element that the user's mouse moved over (or out of). For convenience, we wrap this DOM element object in a jQuery object and then use the jQuery <code>css</code> method to set a CSS style.</p>
+<p>The screen capture below shows the event-handling in action.</p>
+<p><img alt="click mouse event demo" src="https://innernet.io/media/click-mouse-event-demo.gif" /></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/jquery.html">jQuery</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>

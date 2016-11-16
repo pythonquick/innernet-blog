@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Guenther" />
+<meta name="description" content="This tutorial focuses on three methods of all function objects: apply, call and bind. The first two sections deal with how functions can be called dynamically. The last section deals with a concept called "currying", by creating a new function that wraps an existing function. The examples below are very ..." />
+<meta name="keywords" content="JavaScript, ES5">
+<meta property="og:site_name" content="innernet"/>
+<meta property="og:title" content="Functions. Part 2"/>
+<meta property="og:description" content="This tutorial focuses on three methods of all function objects: apply, call and bind. The first two sections deal with how functions can be called dynamically. The last section deals with a concept called "currying", by creating a new function that wraps an existing function. The examples below are very ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/functions-part-2.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-06-29 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/guenther.html">
+<meta property="article:section" content="Tutorials"/>
+<meta property="article:tag" content="JavaScript"/>
+<meta property="article:tag" content="ES5"/>
+<meta property="og:image" content="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80">
+
+  <title>innernet &ndash; Functions. Part 2</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80" alt="" title="">
+      </a>
+      <h1><a href="http://localhost:8000"></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="http://localhost:8000/pages/about.html#about">About</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-You can add links in your config file" href="#" target="_blank"><i class="fa fa-You can add links in your config file"></i></a></li>
+        <li><a class="sc-Another social link" href="#" target="_blank"><i class="fa fa-Another social link"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/archives.html">Archives</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="functions-part-2">Functions. Part 2</h1>
+    <p>
+          Posted on Wed 29 June 2016 in <a href="http://localhost:8000/category/tutorials.html">Tutorials</a>
+
+
+    </p>
+  </header>
+  <div>
+    <p>This tutorial focuses on three methods of all function objects: <code>apply</code>, <code>call</code> and <code>bind</code>.</p>
+<p>The first two sections deal with how functions can be called dynamically.
+The last section deals with a concept called "currying", by creating a new function that wraps an existing function.</p>
+<p>The examples below are very contrived, but they illustrate the use of these three functions.</p>
+<h1>apply: Call functions with array of parameters</h1>
+<p>Each function object has an <code>apply</code> method that can be used to <code>call</code> the function with a single array that contains the individual values that should be applied as the parameters for the function.</p>
+<p>Assume we have a function to calculate the volume of a block:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">length</span> <span class="o">*</span> <span class="nx">height</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>We can call this function as follows if we have an array of parameter values:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">volume</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">dimensions</span><span class="p">);</span>
+</pre></div>
+
+
+<p>In this example, the volumeOfBlock function got called with two parameters:</p>
+<ul>
+<li>the first parameter is the "context object". The context object is the object the function operates on, and it is the object that will be accessible with the <code>this</code> keyword within the function. Since the <code>volumeOfBlock</code> function does not need a context object, we specify null.</li>
+<li>The second parameter is the array of parameters. The array has three numbers and these will be the three parameters passed to the volumeOfBlock function</li>
+</ul>
+<p>In order to see how the context object works, consider the following Person class and two instances of it:</p>
+<div class="highlight"><pre><span></span><span class="c1">// Constructor/Class function:</span>
+<span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">lastName</span><span class="p">;</span>
+
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fullName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">X</span><span class="p">(</span><span class="nx">greeting</span><span class="p">,</span> <span class="nx">intro</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">greeting</span> <span class="o">+</span> <span class="s1">&#39;. My name is &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39;,\n\n&#39;</span> <span class="o">+</span> <span class="nx">intro</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// Person is the class.</span>
+<span class="c1">// Use the &quot;new&quot; keyword to create instances or objects of this class:</span>
+<span class="kd">var</span> <span class="nx">intern</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;Sergio&quot;</span><span class="p">,</span> <span class="s2">&quot;Torres Gonzalez&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">talker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&quot;Judy&quot;</span><span class="p">,</span> <span class="s2">&quot;Harrigan&quot;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>There are two functions attached to the Person class. They can be accessed using the prototype object. For example:</p>
+<p>Person.prototype.introduce is a function, and we can call it using <code>call</code> as follows:</p>
+<div class="highlight"><pre><span></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">intern</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Hola&#39;</span><span class="p">,</span> <span class="s1">&#39;Nice day today&#39;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>In this case, the context object is set to the <code>intern</code> instance. This is important because the <code>introduce</code> function uses the <code>this</code> keyword to access the firstName attribute of the object it operates on.</p>
+<p>The above call will return the following message:</p>
+<div class="highlight"><pre><span></span>Hola. My name is Sergio,
+Nice day today
+</pre></div>
+
+
+<p>Even though the <code>introduce</code> function is part of the Person class, it is not necessary to call it with a Person instance.</p>
+<p>For example, if we have the following simple object:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">outsider</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Lou&#39;</span><span class="p">,</span>
+    <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Pereira&#39;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>then we can call the <code>introduce</code> function as follows:</p>
+<div class="highlight"><pre><span></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">outsider</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Good morning&#39;</span><span class="p">,</span> <span class="s1">&#39;I am the boss around here&#39;</span><span class="p">]);</span>
+</pre></div>
+
+
+<p>The above call will return the following message:</p>
+<div class="highlight"><pre><span></span>Good morning. My name is Lou,
+I am the boss around here
+</pre></div>
+
+
+<p>Here the context object is the <code>outsider</code> object.</p>
+<h1>call: Call functions with sequence of parameters</h1>
+<p>Each function object has a <code>call</code> method that can be used to call the function with a sequence of parameters.</p>
+<p>The <code>call</code> method is very similar to the <code>apply</code> method. It only differs in the way it passes the parameters.</p>
+<p>The above call to the <code>introduce</code> function on the <code>outsider</code> object would look as follows if we use the <code>call</code> method:</p>
+<div class="highlight"><pre><span></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">outsider</span><span class="p">,</span> <span class="s1">&#39;Good morning&#39;</span><span class="p">,</span> <span class="s1">&#39;I am the boss around here&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<h1>bind: Create a new wrapping function</h1>
+<p>Each function object has a <code>bind</code> method.
+The method <code>bind</code> can be used to create a new function that calls the original function with the given <code>this</code> context.</p>
+<p>Let's say we a function that calculates the volume of a block:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">length</span> <span class="o">*</span> <span class="nx">height</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Let's assume we have many different blocks but they all have the same area, but they differ in height.
+The following would calculate the volume of many world trade centers that all occupy an area of 100 by 75 meters:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">volumeForBostonWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForMiamiWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForHoustonWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">175</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForSeattleWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">160</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The first two parameters are always the same. If we want to reuse the <code>volumeOfBlock</code> function, but abstract away those parameters (and use the default values), we can expose a new function with only the one parameter that matters: the height of the world trade center:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">volumeForWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">);</span>
+</pre></div>
+
+
+<p>By calling the <code>bind</code> method, we're not calling the volumeOfBlock function. Instead, we're creating a new function. We can call this new function as follows instead of the original four calls:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">volumeForBostonWTC</span> <span class="o">=</span> <span class="nx">volumeForWTC</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForMiamiWTC</span> <span class="o">=</span> <span class="nx">volumeForWTC</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForHoustonWTC</span> <span class="o">=</span> <span class="nx">volumeForWTC</span><span class="p">(</span><span class="mi">175</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">volumeForSeattleWTC</span> <span class="o">=</span> <span class="nx">volumeForWTC</span><span class="p">(</span><span class="mi">160</span><span class="p">);</span>
+</pre></div>
+
+
+<p>as with <code>apply</code> and <code>bind</code>, the first parameter to the <code>bind</code> method is the context object. In this case, we don't need a context object for the <code>volumeOfBlock</code> function, and specify null. The new function that <code>bind</code> creates, supplies the first two parameters. When we call this function, the parameters to this newly created function will be added as additional parameters. In this case, the one and only parameter passed in the call to <code>volumeForWTC</code> will become the third parameter passed to <code>volumeOfBlock</code> "behind the scenes".</p>
+<p>The following statement with <code>bind</code>:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">volumeForWTC</span> <span class="o">=</span> <span class="nx">volumeOfBlock</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">);</span>
+</pre></div>
+
+
+<p>is basically the same as doing the following:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">volumeForWTC</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">volumeOfBlock</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/javascript.html">JavaScript</a>
+      <a href="http://localhost:8000/tag/es5.html">ES5</a>
+    </p>
+  </div>
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Guenther </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " innernet ",
+  "url" : "http://localhost:8000",
+  "image": "http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80",
+  "description": ""
+}
+</script>
+</body>
+</html>
