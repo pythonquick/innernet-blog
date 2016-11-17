@@ -15,7 +15,7 @@ jQuery provides the method `$.ajax` to initiate an AJAX call. The first paramete
 Here is a simple call using $.ajax and a URL. No other parameters and options used:
 
     :::JavaScript
-    $.ajax("https://innernet.io/media/boston.html");
+    $.ajax("https://innernet.io/extras/boston.json");
 
 # Specify a callback - the old way
 
@@ -39,7 +39,7 @@ Here is a sample of an AJAX call that uses the three callbacks:
     function handleError(jqXHR, textStatus, errorThrown) { alert('handleError ' + textStatus + ' ' + errorThrown); }
     function handleComplete() {  alert('handleComplete'); }
 
-    var url = 'https://innernet.io/media/boston.html'
+    var url = 'https://innernet.io/extras/boston.json'
     var settings = {
         success: handleSuccess,
         error: handleError,
@@ -59,20 +59,20 @@ The sections below deal with a few common options: method, data, dataType and he
 By default, the HTTP method GET will be used. To use a different HTTP method, use the `method` option. For example, to make a POST request to the same URL, do this:
 
     :::JavaScript
-    var url = 'https://innernet.io/media/boston.html'
+    var url = 'https://innernet.io/extras/boston.json'
     var settings = {
         method: "POST"
     };
     $.ajax(url, settings);
 
-Note: doing a POST to the [https://innernet.io/media/boston.html](https://innernet.io/media/boston.html) URL will not be supported. This is just to illustrate how to use a different HTTP method.
+Note: doing a POST to the [https://innernet.io/extras/boston.json](https://innernet.io/extras/boston.json) URL will not be supported. This is just to illustrate how to use a different HTTP method.
 
 ## The data option
 
 To add a collection of name-value parameters (also referred to as query parameters) to the URL, the parameters and values can be specified in an object for the "data" option. Here's an example that adds four query parameters to the URL:
 
     :::JavaScript
-    var url = 'https://innernet.io/media/boston.html'
+    var url = 'https://innernet.io/extras/boston.json'
     var settings = {
         data: {
             FTYPE: 'R',
@@ -86,11 +86,11 @@ To add a collection of name-value parameters (also referred to as query paramete
 
 ## The dataType option
 
-When specifying a success callback, the first parameter to the callback function will be the result of the server response. jQuery will try to infer the type of data. For example, if the URL ends with .json or if the HTTP response header specifies that the type of data is in JSON format, jQuery will attempt to parse the server response as JSON and provide a JSON object as a parameter. In the case of the URL to [https://innernet.io/media/boston.html](https://innernet.io/media/boston.html), the success method will get back a big text string.
+When specifying a success callback, the first parameter to the callback function will be the result of the server response. jQuery will try to infer the type of data. For example, if the URL ends with .json or if the HTTP response header specifies that the type of data is in JSON format, jQuery will attempt to parse the server response as JSON and provide a JSON object as a parameter. In the case of the URL to [https://innernet.io/extras/boston.json]({filename}/extras/boston.json), the success method will get back a big text string.
 To tell jQuery that the response content is JSON, set the dataType option to "JSON":
 
     :::JavaScript
-    var url = 'https://innernet.io/media/boston.html'
+    var url = 'https://innernet.io/extras/boston.json'
     var settings = {
             dataType: 'json',
             success: function(data) {
@@ -108,7 +108,7 @@ To send certain HTTP request headers to the server, use the headers option. The 
 Here's an example of how to call the URL with the HTTP request header "Cache-Control" set to "max-age=1000":
 
     :::JavaScript
-    var url = 'https://innernet.io/media/boston.html';
+    var url = 'https://innernet.io/extras/boston.json';
     var settings = {
         headers: {
             'Cache-Control': 'max-age=1000'
@@ -138,7 +138,7 @@ Note: the done, fail and always methods are methods of the jqXML object and each
 Here's an example that reuses the previously defined functions: handleSuccess, handleError and handleComplete:
 
     :::JavaScript
-    var jqXHR = $.ajax('https://innernet.io/media/boston.html');
+    var jqXHR = $.ajax('https://innernet.io/extras/boston.json');
 
     jqXHR
         .done(handleSuccess)
@@ -157,7 +157,7 @@ One of these is the $.post method. It takes the URL as the first parameter, just
 The following makes a POST request to the specified URL and logs the resulting response text to the console:
 
     :::JavaScript
-    $.post('https://innernet.io/media/boston.html', function(data) {
+    $.post('https://innernet.io/extras/boston.json', function(data) {
         console.log(data); 
     });
 
@@ -170,7 +170,7 @@ Note, the $.ajax method also uses HTTP GET method by default, but the $.get meth
 When the response from the server is a text string but it represents JSON data, one needs to first parse the text to a JavaScript object before that object can be queried. Here's an example that first gets the text data from the server, parses it and then alerts the weather condition:
 
     :::JavaScript
-    $.get('https://innernet.io/media/boston.html', function(data) {
+    $.get('https://innernet.io/extras/boston.json', function(data) {
         var jsonObject = $.parseJSON(data);
         alert(jsonObject.weather[0].description); 
     });
@@ -178,7 +178,7 @@ When the response from the server is a text string but it represents JSON data, 
 If we know already that the output will be in JSON format, the dataType option can be used to specify that the expected content type is JSON. In that case, the success / done function will get a parameter of type Object, instead of type String:
 
     :::JavaScript
-    $.ajax('https://innernet.io/media/boston.html', {
+    $.ajax('https://innernet.io/extras/boston.json', {
         dataType: 'json',
         success: function(data) {
             alert(data.weather[0].description); 
@@ -188,6 +188,6 @@ If we know already that the output will be in JSON format, the dataType option c
 The $.getJSON method simplifies this. It sets the dataType to 'json' and takes the success function as the second parameter:
 
     :::JavaScript
-    $.getJSON('https://innernet.io/media/boston.html', function(data) {
+    $.getJSON('https://innernet.io/extras/boston.json', function(data) {
         alert(data.weather[0].description); 
     });

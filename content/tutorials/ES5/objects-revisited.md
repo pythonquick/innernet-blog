@@ -46,7 +46,7 @@ The values for each of these keys are mostly strings or integers. One of the val
 
 Here is a tabular representation of the above CONST object:
 
-![Object tabular structure](https://innernet.io/media/object-structure-tabular.png)
+![Object tabular structure]({filename}/extras/object-structure-tabular.png)
 
 Using the string name of the attribute, we can access the corresponding value. 
 
