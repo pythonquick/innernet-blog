@@ -79,7 +79,7 @@ Consider the following function that makes a call to the Open Weather API server
         });
     }
 
-This function first adds a new <li> tag to the parent page's <ul> list with the ID of "weatherlist". It makes a call to api.openweathermap.org for the specified city. When the request gets back the weather data, it adds the weather description and temperature.
+This function first adds a new `<li>` tag to the parent page's `<ul>` list with the ID of "weatherlist". It makes a call to api.openweathermap.org for the specified city. When the request gets back the weather data, it adds the weather description and temperature.
 Note that this function returns the jqXHR object returned by the jQuery AJAX function. In this case it calls the $.get helper function.
 
 Here's a function that uses the jQuery `done` methods on the jqXHR object returned by the fetchWeather function:

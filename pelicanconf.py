@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = 'Guenther'
 SITENAME = 'innernet'
 SITEURL = 'http://localhost:8000'
-SITELOGO = 'http://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80'
+SITELOGO = 'https://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80'
 
 PATH = 'content'
 THEME = '../pelican-themes/Flex'
