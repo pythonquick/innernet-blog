@@ -2,3 +2,4 @@ fabfile.py
 Makefile
 publish.sh
 output
+*.pyc
