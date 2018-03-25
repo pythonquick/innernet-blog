@@ -2,10 +2,11 @@ Title: Calculate pi on Raspberry using Elixir
 Date: 2018-03-14
 Category: Elixir
 Tags: raspberry-pi,elixir
+slug: calculate-pi-on-raspberry-using-elixir
 
 Elixir is a modern, functional programming language, based on the Erlang runtime
 environment. Erlang has a long history of being a robust platform for building
-distributed systems with many concurrent "processes" that run concurrently. The
+distributed systems with many "processes" that run concurrently. The
 processes in quotation marks means light-weight processing containers managed by
 the BEAM (the Erlang runtime virtual machine), not actual operating system
 processes.
@@ -16,7 +17,13 @@ soon be updated for Elixir version 1.6.
 
 Since PI day is coming up (3/14 in U.S. date format), I thought it would be fun
 to explore Elixir's concurrent processing to calculate some digits of the number
-pi!  On the topic of "pi", why not use some Raspberry PIs ;-)
+pi!
+
+This article goes over the setup and some of the Elixir code. It is not intended
+to be a Elixir tutorial. 
+
+On the topic of "pi", why not use some Raspberry PIs ;-)
+
 
 # Nodes on the network
 
@@ -49,7 +56,7 @@ Ethernet cables to a switch mounted under the desk:
 
 ![stack]({filename}/extras/rpi-stack.JPG)
 
-Each device is the Raspberry Pi model B, having a 1.2 GHz 64-bit CPU which is
+Each device is a Raspberry Pi model B, having a 1.2 GHz 64-bit CPU which is
 rather slow, but four cores that can come in handy for concurrent computation.
 
 Running the final program on the Raspberry Pis shot up the temperature upward of
@@ -148,7 +155,7 @@ Below is a sample of how the above Counter module can be used:
     send(pid, {:add, 5})
     send(pid, {:subtract, 3})
 
-    # Finally, send a message to retrieve
+    # Send a message to retrieve
     # the value of the counter. Here we
     # send the current process's pid
     # (the result of calling self()),
@@ -232,6 +239,7 @@ was used, which handles arbitrary precision numeric values.
 Here is the Elixirpi.Collector module, somewhat simplified compared to the
 version on [GitHub](https://github.com/pythonquick/elixirpi):
 
+    :::Elixir:::
     defmodule Elixirpi.Collector do
       use GenServer
       alias Decimal, as: D
