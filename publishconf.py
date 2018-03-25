@@ -12,6 +12,7 @@ from pelicanconf import *
 
 SITEURL = 'https://innernet.io'
 RELATIVE_URLS = True
+ROBOTS = 'index, follow'
 
 
 DELETE_OUTPUT_DIRECTORY = True

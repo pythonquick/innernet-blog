@@ -1,15 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import os
 
 AUTHOR = 'Guenther'
 SITENAME = 'innernet'
 SITEURL = 'http://localhost:8000'
 SITELOGO = 'https://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80'
+ROBOTS = 'index, follow'
 
 PATH = 'content'
 #THEME = '../pelican-themes/Flex'
-THEME = '../github/Flex'
+#THEME = '../github/Flex'
+#THEME = '../github/lannisport'
+#THEME = '../github/pelican-mg'
+#THEME = '../github/MinimalXY'
+#THEME = '../github/pelican-cait'
+THEME = '../github/plumage'
+#THEME = '../github/pelican-elegant'
 MENUITEMS = (('Categories', '/categories.html'),
              ('Tags', '/tags.html'),
              ('Archives', '/archives.html'),)
@@ -25,6 +33,8 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+DISPLAY_CATEGORIES_ON_MENU = False
+
 # Blogroll
 #LINKS = (('Pelican', 'http://getpelican.com/'),
 #         ('Python.org', 'http://python.org/'),
@@ -32,12 +42,22 @@ AUTHOR_FEED_RSS = None
 LINKS = ()
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('GitHub', 'https://github.com/pythonquick'),
+        ('Twitter', 'https://twitter.com/pythonquick'),)
 
 DEFAULT_PAGINATION = 10
+
+PLUGIN_PATHS = ['../github/pelican-plugins']
+PLUGINS = ['gravatar', u'disqus_static']
+DISQUS_SITENAME = u'innernet'
+DISQUS_SECRET_KEY = os.environ["DISQUS_SECRET_KEY"]
+DISQUS_PUBLIC_KEY = u'jHOTvv9aBxf7cXnuBJpPne1SHzMNwMZLFghMrhzBVAx0m3fomH3yulPKaaXJW0k4'
+COPYRIGHT = u'© 2018 Guenther Haeussermann'
+SITE_THUMBNAIL = 'https://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80'
 
 STATIC_PATHS = ["extras"]
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+SITESUBTITLE = "A developer's blog"
