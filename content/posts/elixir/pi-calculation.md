@@ -61,11 +61,11 @@ rather slow, but four cores that can come in handy for concurrent computation.
 
 Running the final program on the Raspberry Pis shot up the temperature upward of
 80 °C. For any long periods of calculation this cannot be good for the life of
-the chips so I put some heatsinks on the chips:
+the chips so I added some heatsinks:
 
 ![heatsink]({filename}/extras/rpi-heatsink.JPG)
 
-The heatsinks really makes a difference. Without the heatsinks, the idle
+The heatsinks really make a difference. Without the heatsinks, the idle
 temperature was about 45°C and with heatsink it came down to 42°C. During full
 load, the temperature would be about 82°C without heatsink. With heatsink and
 active cooling with some fans, the temperature could be held between 50°C and
@@ -84,7 +84,7 @@ series of terms. In this exercise, the
 
 ![BBP Formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/af6bc360851499dd2ab2a90bee03fbe2040089d5)
 
-Each term in this sum represents a digit in the nth digit position. Although,
+Each term in this sum represents a digit in the k'th digit position. Although,
 the digit position is not a decimal position, it is a hexadecimal position. For
 the sum and the resulting value of pi, it makes no difference. The series can be
 broken up into "chunks" that can be assigned as work packets for the worker
