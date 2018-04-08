@@ -20,7 +20,7 @@ to explore Elixir's concurrent processing to calculate some digits of the number
 pi!
 
 This article goes over the setup and some of the Elixir code. It is not intended
-to be a Elixir tutorial. 
+to be an Elixir tutorial.
 
 On the topic of "pi", why not use some Raspberry PIs ;-)
 
@@ -180,25 +180,26 @@ be written as follows to be a GenServer:
     defmodule Counter do
       use GenServer
 
-      def handle_cast({:add, number}, counter) do
+      def handle_cast({:add, num}, count) do
         # Cast does not have a reply.
-        # State changes by adding number:
-        {:noreply, counter + number}
+        # State changes by adding num:
+        {:noreply, count + num}
       end
 
-      def handle_cast({:subtract, number}, counter) do
+      def handle_cast({:subtract, num}, count) do
         # Cast does not have a reply.
-        # State changes by subtracting number:
-        {:noreply, counter - number}
+        # State changes by subtracting num:
+        {:noreply, count - num}
       end
 
-      def handle_call(:value, _from, counter) do
-        # A call is synchronous and returns a value.
-        # The three-part tuple below indicates that
+      def handle_call(:value, _, count) do
+        # A call is synchronous and
+        # returns a value. The three-part
+        # tuple below indicates that
         # - a value is to be returned
-        # - the return value is `counter`
-        # - the state `counter` (unchanged)
-        {:reply, counter, counter}
+        # - the return value is `count`
+        # - the state `count` (unchanged)
+        {:reply, count, count}
       end
     end
 
@@ -217,10 +218,12 @@ Here is an example of using the Counter as a GenServer:
     :::Elixir:::
     # Create a new Counter GenServer,
     # and initialize the counter to 10:
-    {:ok, pid} = GenServer.start_link(Counter, 10)
+    {:ok, pid}
+      = GenServer.start_link(Counter, 10)
 
-    # Add 5 and subtract 3 from the counter by
-    # sending messages to # the process's pid
+    # Add 5 and subtract 3
+    # from the counter by sending messages
+    # to the process's pid
     GenServer.cast(pid, {:add, 5})
     GenServer.cast(pid, {:subtract, 3})
     value = GenServer.call(pid, :value)
@@ -243,12 +246,12 @@ version on [GitHub](https://github.com/pythonquick/elixirpi):
     defmodule Elixirpi.Collector do
       use GenServer
       alias Decimal, as: D
-      @digit_batch_size 8
-      @target_hex_digits 10000
-      @precision div(@target_hex_digits * 4, 3)
+      @batch_size 8
+      @trg_digits 10000
+      @precision div(@trg_digits * 4, 3)
 
       def start do
-        digit_positions = Enum.reduce(@target_hex_digits..0, [], &([&1 | &2]))
+        digit_positions = Enum.reduce(@trg_digits..0, [], &([&1 | &2]))
         pi = D.new(0) # Initial value
         {:ok, pid} = GenServer.start_link(__MODULE__, {pi, digit_positions})
         :global.register_name(:collector_process_name, pid)
@@ -257,18 +260,18 @@ version on [GitHub](https://github.com/pythonquick/elixirpi):
         :timer.sleep(:infinity)
       end
 
-      ##############################################################################
-      # GenServer callbacks
-      ##############################################################################
+      ######################
+      # GenServer callbacks:
+      ######################
 
       def handle_call(:next_digit_positions, _from, {pi, digit_positions}) do
-        {next_digits, remaining}  = Enum.split(digit_positions, @digit_batch_size)
+        {next_digits, remaining}  = Enum.split(digit_positions, @batch_size)
         output_progress(next_digits, pi)
         {:reply, {next_digits}, {pi, remaining}}
       end
 
       def handle_cast({:update_pi, additional_term}, {pi, digit_positions}) do
-        D.set_context(%D.Context{D.get_context | precision: @precision}) 
+        D.set_context(%D.Context{D.get_context | precision: @precision})
         updated_pi = D.add(pi, additional_term)
         {:noreply, {updated_pi, digit_positions}}
       end
@@ -281,16 +284,16 @@ In the `start` function, the `Enum.reduce` function takes each item of the range
 initially the empty list: []:
 
     :::Elixir:::
-    digit_positions = Enum.reduce(@target_hex_digits..0, [], &([&1 | &2]))
+    digit_positions = Enum.reduce(@trg_digits..0, [], &([&1 | &2]))
 
-This results in a list of integer values from 0 up to 10000 inclusive. 
+This results in a list of integer values from 0 up to 10000 inclusive.
 
 The server process is created in the following line using the function
 `GenServer.start_link`. Here we initialize the state of the GenServer with two
 items:
 
 * the value of pi calculated so far
-* the list of digit positions for the number pi to be calculated, 
+* the list of digit positions for the number pi to be calculated,
 
 Note: the PID of the master node is registered in a global registry:
 
@@ -386,7 +389,7 @@ Finally, each of the task results are collected, and sent to the master node.
 # The Result
 
 The result of running the four Raspberry Pi nodes for two hours is the generated
-file pi.txt with 10000 decimal digits. 
+file pi.txt with 10000 decimal digits.
 
 The goal was by no means to break any records with this. It is a fun way to
 explore Elixir's (and Erlang's) programming model and how processes and nodes
