@@ -1,4 +1,4 @@
 User-agent: * 
 Disallow: 
-Sitemap: https://innernet.io/robots.txt
+Sitemap: https://innernet.io/sitemap.xml
 
