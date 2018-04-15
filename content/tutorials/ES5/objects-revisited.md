@@ -78,26 +78,39 @@ Try to figure out what value the following snippets will display in the alert me
     :::JavaScript
     alert(CONST.PERIOD_TYPE.MONTHLY);
 
+---
+
     :::JavaScript
     alert(CONST["EXPORTCOL_SHOW"]);
+
+---
 
     :::JavaScript
     alert(CONST["PERIOD_TYPE"]["WEEKLY"]);
 
+---
+
     :::JavaScript
     var period = "SUMMARY";
     alert(CONST["PERIOD_TYPE"][period]);
+
+---
 
     :::JavaScript
     var setting = "PERIOD_TYPE";
     var period = "MONTHLY";
     alert(CONST[setting][period]);
 
+---
+
     :::JavaScript
     alert(CONST[PERIOD_TYPE].SUMMARY);
 
+---
+
     :::JavaScript
     alert(CONST["PERIOD_TYPE.MONTHLY"]);
+
 
 The following random image is merely a space-filler to hide the answer below ;-)
 
