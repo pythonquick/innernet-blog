@@ -114,7 +114,7 @@ Try to figure out what value the following snippets will display in the alert me
 
 The following random image is merely a space-filler to hide the answer below ;-)
 
-![random image](http://lorempixel.com/500/300/)
+![random image](https://lorempixel.com/500/300/)
 
 all of the above will work except for the last two. Note: all attributes (keys) of objects are of type string. When using the dot (.) notation, it is not necessary to use quotation marks. When using square bracket notation ([ ]) one must either use quotation marks, or use a string variable to access the key
 
