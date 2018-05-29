@@ -63,7 +63,7 @@ DEFAULT_PAGINATION = 10
 
 PLUGIN_PATHS = ['../github/pelican-plugins']
 PLUGINS = ['gravatar', u'disqus_static', 'sitemap']
-DISQUS_SITENAME = u'innernet'
+DISQUS_SITENAME = u'innernet-1'
 DISQUS_SECRET_KEY = os.environ["DISQUS_SECRET_KEY"]
 DISQUS_PUBLIC_KEY = u'jHOTvv9aBxf7cXnuBJpPne1SHzMNwMZLFghMrhzBVAx0m3fomH3yulPKaaXJW0k4'
 COPYRIGHT = u'© 2018 Guenther Haeussermann'
