@@ -145,7 +145,7 @@ resides in Slack.
 
 
 There is also the [Ember Disuss forum](https://discuss.emberjs.com/) which is
-used but pnot as actively as the Ember Community Slack. I think the Ember
+used but not as actively as the Ember Community Slack. I think the Ember
 Discuss forum is great for posting longer content threads, whereas Slack excels
 at quick and interactive exchanges with the community. 
 
