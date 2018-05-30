@@ -4,20 +4,25 @@ Category: Ember
 Tags: ember, JavaScript
 slug: ember-in-2018-and-beyond
 
+The Ember.js team recently called for feedback on how to improve the framework.
+This will be used to shape the roadmap for future features and direction.
+Read more about the announcement
+[here](https://emberjs.com/blog/2018/05/02/ember-2018-roadmap-call-for-posts.html).
 
 This post reflects on my journey and impressions of the Ember.js framework so
 far and some some ideas and wishes for Ember in 2018 and beyond.
+
+# The Journey with Ember so far
 
 The Ember.js framework has come a long way since i started to use it back in
 2014. I remember when Ember used the "starter kit" and the transitions to the
 Ember-CLI which inspired the CLI in Angular.
 
-# The Journey with Ember so far
-
 At the company i work at, we use both Angular and Ember.js for products and
 internal tools. I have to say, having worked with several frameworks
-over the past years, Ember.js is a joy to work with. Here are a few items that
-stand out for me:
+over the past years, Ember.js is a joy to work with.
+
+Here are a few items that stand out for me:
 
 ## Upgradability
 
