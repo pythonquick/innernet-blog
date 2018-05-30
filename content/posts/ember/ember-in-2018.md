@@ -145,8 +145,8 @@ migrate to the new layout.
 As mentioned earlier, there have been many occasions where I found the Ember
 Community Slack to be very valuable - finding the right answers to my questions
 within minutes. There are very valuable nuggets of content in the various Ember
-Slack channels, but unfortunately all that content is not discoverable if it
-resides in Slack.
+Slack channels, but unfortunately all that content is not discoverable via web
+search if it resides in Slack.
 
 
 There is also the [Ember Disuss forum](https://discuss.emberjs.com/) which is
@@ -164,7 +164,7 @@ might not have a specific answer.
 
 Perhaps, if the Ember Discuss forum had a chat and notification feature it could
 be an alternative to the Ember Slack team, and all content would be easily
-discoverable. Some food for thought.
+discoverable using a web search. Some food for thought.
 
 
 ## Ease of adoption
