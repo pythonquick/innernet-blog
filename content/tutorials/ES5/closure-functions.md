@@ -59,7 +59,7 @@ the `checkPaintCoverage` function takes only one parameter: an object containing
 
 "So, where is the closure function?", you might ask. The picture below shows:
 
-![closure]({filename}/extras/closure.png)
+![closure]({static}/extras/closure.png)
 
 If you look at the ` generateCircleAreaChecker` function, you'll see that it defines a local variable called `aeraOfCircle` which contains the area of a circle with the given radius. 
 In the first line of the function, it generates a function that is initialized with a radius for a circle.

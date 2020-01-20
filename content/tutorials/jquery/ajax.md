@@ -86,7 +86,7 @@ To add a collection of name-value parameters (also referred to as query paramete
 
 ## The dataType option
 
-When specifying a success callback, the first parameter to the callback function will be the result of the server response. jQuery will try to infer the type of data. For example, if the URL ends with .json or if the HTTP response header specifies that the type of data is in JSON format, jQuery will attempt to parse the server response as JSON and provide a JSON object as a parameter. In the case of the URL to [https://innernet.io/extras/boston.json]({filename}/extras/boston.json), the success method will get back a big text string.
+When specifying a success callback, the first parameter to the callback function will be the result of the server response. jQuery will try to infer the type of data. For example, if the URL ends with .json or if the HTTP response header specifies that the type of data is in JSON format, jQuery will attempt to parse the server response as JSON and provide a JSON object as a parameter. In the case of the URL to [https://innernet.io/extras/boston.json]({static}/extras/boston.json), the success method will get back a big text string.
 To tell jQuery that the response content is JSON, set the dataType option to "JSON":
 
     :::JavaScript

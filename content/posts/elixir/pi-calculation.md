@@ -44,7 +44,7 @@ number of digit positions have been calculated.
 
 The graphic below illustrates the idea for work distribution:
 
-![stack]({filename}/extras/master-worker.png)
+![stack]({static}/extras/master-worker.png)
 
 # The Raspberry PIs
 
@@ -54,7 +54,7 @@ using Raspberry PI devices. So i could borrow two Raspberry Pis and with two of
 my own I have a little stack of four devices connected to the local network via
 Ethernet cables to a switch mounted under the desk:
 
-![stack]({filename}/extras/rpi-stack.JPG)
+![stack]({static}/extras/rpi-stack.JPG)
 
 Each device is a Raspberry Pi model B, having a 1.2 GHz 64-bit CPU which is
 rather slow, but four cores that can come in handy for concurrent computation.
@@ -63,7 +63,7 @@ Running the final program on the Raspberry Pis shot up the temperature upward of
 80 °C. For any long periods of calculation this cannot be good for the life of
 the chips so I added some heatsinks:
 
-![heatsink]({filename}/extras/rpi-heatsink.JPG)
+![heatsink]({static}/extras/rpi-heatsink.JPG)
 
 The heatsinks really make a difference. Without the heatsinks, the idle
 temperature was about 45°C and with heatsink it came down to 42°C. During full
@@ -73,7 +73,7 @@ active cooling with some fans, the temperature could be held between 50°C and
 
 Here is the setup with three fans, moving the air in one direction:
 
-![fan setup]({filename}/extras/rpi-fan-setup.JPG)
+![fan setup]({static}/extras/rpi-fan-setup.JPG)
 
 # Formula for calculating Pi
 

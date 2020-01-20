@@ -81,4 +81,4 @@ The other two mouse-handling functions (`doMouseOver` and `doMouseOut`) _do very
 
 The screen capture below shows the event-handling in action.
 
-![click mouse event demo]({filename}/extras/click-mouse-event-demo.gif)
+![click mouse event demo]({static}/extras/click-mouse-event-demo.gif)

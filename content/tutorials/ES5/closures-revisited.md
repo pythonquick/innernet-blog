@@ -51,7 +51,7 @@ Why is this?
 
 The click handler-function that's attached to the button references the idx variable from the outer (initDocument) function. The click handler-function is therefore a closure function. In fact, each of the three buttons has a separate closure function and they all reference the same idx variable as illustrated by the following graphic:
 
-![Closure Loop Bug]({filename}/extras/closures-loop-bug.png)
+![Closure Loop Bug]({static}/extras/closures-loop-bug.png)
 
 The problem is that the click handler-function does not capture the current value of the idx variable, it merely references the idx variable which will change as the for loop iterates.
 
