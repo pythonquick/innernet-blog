@@ -62,11 +62,12 @@ SOCIAL = (('GitHub', 'https://github.com/pythonquick'),
 DEFAULT_PAGINATION = 10
 
 PLUGIN_PATHS = ['../github/pelican-plugins']
-PLUGINS = ['gravatar', u'disqus_static', 'sitemap']
-DISQUS_SITENAME = u'innernet-1'
-DISQUS_SECRET_KEY = os.environ["DISQUS_SECRET_KEY"]
-DISQUS_PUBLIC_KEY = u'jHOTvv9aBxf7cXnuBJpPne1SHzMNwMZLFghMrhzBVAx0m3fomH3yulPKaaXJW0k4'
-COPYRIGHT = u'© 2018 Guenther Haeussermann'
+#PLUGINS = ['gravatar', u'disqus_static', 'sitemap']
+PLUGINS = ['gravatar', 'sitemap']
+#DISQUS_SITENAME = u'innernet-1'
+#DISQUS_SECRET_KEY = os.environ["DISQUS_SECRET_KEY"]
+#DISQUS_PUBLIC_KEY = u'jHOTvv9aBxf7cXnuBJpPne1SHzMNwMZLFghMrhzBVAx0m3fomH3yulPKaaXJW0k4'
+#COPYRIGHT = u'© 2018 Guenther Haeussermann'
 SITE_THUMBNAIL = 'https://s.gravatar.com/avatar/fcfe36f97f3eb56b69ecce65d0c895dc?s=80'
 
 STATIC_PATHS = ["extras"]
