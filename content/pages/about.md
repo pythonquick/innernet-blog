@@ -3,7 +3,7 @@ Date: 2015-01-02
 
 Hello! My name is Guenther Haeussermann. I live near Boston, in Massachusetts.
 
-During the day I work as a Senior Integration Engineer at [PMA Solutions](http://pmasolutions.com), helping clients integrate SAP modules with project management and GIS systems.
+During the day I work as a Full-Stack Software Engineer at Autodesk.
 
 In recent years I've been doing more and more web development work. It's truly an exciting time with the fast pace at which JavaScript and web technologies are advancing.
 
