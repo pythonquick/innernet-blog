@@ -4,7 +4,8 @@ date: 2016-09-02 09:00
 category:
 - Tutorials
 tags:
-- JavaScript, ES2015
+- JavaScript
+- ES2015
 ---
 
 Some background around JavaScript specifications:
