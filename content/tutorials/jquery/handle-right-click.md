@@ -59,8 +59,8 @@ To see this in action, here is the code to handle different click events inside 
     This is the clickbox. Click inside to test mouse click events!
     <hr>
     <button>button</button>
-    <img src='{static}/extras/cat.png'>
+    <img src='/extras/cat.png'>
 </div>
-<script src="{static}/extras/handle-right-click.js"></script>
+<script src="/extras/handle-right-click.js"></script>
 
 

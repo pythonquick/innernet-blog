@@ -97,7 +97,7 @@ Here's a function that uses the jQuery `done` methods on the jqXHR object return
 
 When looking at the network requests in the Chrome Inspector's Network tab, we see that the weather requests for lima, nashua and hannover happen after the first request for boston. 
 
-![jQuery done]({static}/extras/jquery-weather-done.png)
+![jQuery done](/extras/jquery-weather-done.png)
 
 The last three requests basically start simultaneously. This is because the requests for lima, nashua and hannover are all attached as "`done`" handlers to the original boston request. The `done` method returns the original jqXHR object, allowing multiple method calls to be chained. That means the above is equivalent to doing the following:
 
@@ -179,7 +179,7 @@ Here's an example that fetches the whether of a few cities, but sequentially (no
 
 In Chrome Inspector's network tab, we see that the requests run sequentially - one after the other:
 
-![jQuery then]({static}/extras/jquery-weather-then.png)
+![jQuery then](/extras/jquery-weather-then.png)
 
 Note: we intentially inserted a failed network request in the second `then` function call, where it makes a request with an empty city value. The following `then` function handles the error when the second function parameter gets called. Note: without the second function parameter, the `then` function would not contain a new promise object. The chain of `then` calls will continue as long as the previous `then` call returns a new promise for the next `then` call to act on.
 
@@ -236,5 +236,7 @@ Here's an example that loads cities from three continents. As soon as all cities
 
 Here is a screenshot, showing loading of the requests and the banners that appear when each continent's group finished loading:
 
-![jQuery when]({static}/extras/jquery-weather-when.gif)
+![jQuery when](/extras/jquery-weather-when.gif)
+docker build . -t ds.innernet.io:5002/innernet-blog:2
+docker push ds.innernet.io:5002/innernet-blog:2
 
