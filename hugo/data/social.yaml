@@ -1,0 +1,10 @@
+# Show or hide by uncommenting and vice versa
+- item: "github"
+  url: "https://github.com/pythonquick"
+- item: "twitter"
+  url: "https://twitter.com/pythonquick"
+- item: "linkedin"
+  url: "https://www.linkedin.com/in/guenther-haeussermann"
+- item: "rss"
+  url: "index.xml"
+  internal:  true
