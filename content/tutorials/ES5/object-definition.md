@@ -29,30 +29,34 @@ This class deals with objects. When talking about objects, people use different 
 
 JavaScript objects are created using curly braces. The simplest object is one with no attributes:
 
-    :::JavaScript
+```javascript
     var myObject = {};
+```
 
 Attributes can be assigned to an object using dot notation (a period "." character separate the variable name and attribute name) if the name of the attribute is known. For example, to set the "name" and "team" attributes, do the following:
 
-    :::JavaScript
+```javascript
     var myPlayerDetails = {}
     myPlayerDetails.name = "Shawn";
     myPlayerDetails.team = "Seahawks";
+```
 
 Attributes can also be assigned using square brackets. For example, to set the team attribute:
 
-    :::JavaScript
+```javascript
     myPlayerDetails["team"] = "Seahawks";
+```
 
 This square brackets notation is useful if the name of the attribute is dynamic (if it is not known at the time you write the code). For example:
 
-    :::JavaScript
+```javascript
     var attribute;
     if (city === "Seattle")
         attribute = "team";
     else
         attribute = "typeOfBird";
     myPlayerDetails[attribute] = "Seahawks";
+```
 
 Assuming the variable `city` has been defined somewhere, the above snippet will set an attribute named "team" if city is Seattle. If city is not Seattle, the attribute will be named "typeOfBird". In  both cases, the value for the attribute is the string "Seahawks".
 
@@ -64,7 +68,7 @@ The `this` keyword refers to the object on which the method function got called.
 
 In the code snippet below, the `makeNameRegistry` function creates a new object, attaches three attributes to it, and returns it to the caller of the function `makeNameRegistry`.
 
-    :::JavaScript
+```javascript
     function makeNameRegistry(names) {}
         var registry = {};
         registry.names = names;
@@ -85,12 +89,13 @@ In the code snippet below, the `makeNameRegistry` function creates a new object,
         }
         return registry;
     }
+```
 
 # Method 2 - Create object with attributes in-place
 
 The next code snippet will create and return the same object object as above. The difference is that it creates and defines the object in one step:
 
-    :::JavaScript
+```javascript
     function makeNameRegistry(names) {
         return {
             names: names,
@@ -112,12 +117,13 @@ The next code snippet will create and return the same object object as above. Th
             }
         }; 
     }
+```
 
 # Method 3 - Use the "new" keyword with a "Class" function
 
 The third method of creating objects involves a special function in combination with the `new` keyword in JavaScript.
 
-    :::JavaScript
+```javascript
     function NameRegistry(names) {
         this.names = names;
         
@@ -138,11 +144,13 @@ The third method of creating objects involves a special function in combination 
             }
         }
     }
+```
 
 When calling the class function with the `new` keyword, a new and empty object gets created automatically. Here is an example:
 
-    :::JavaScript
+```javascript
     var registry = new NameRegistry(["Sarah", "John", "Peter"]);
+```
 
 Inside the class function, the class function attaches attributes to the newly created object using the `this` keyword
 
@@ -150,7 +158,7 @@ Inside the class function, the class function attaches attributes to the newly c
 
 Let's use the NameRegistry class function (defined above) to work with an array of names:
 
-    :::JavaScript
+```javascript
     var RANDOM_NAMES = [
         "Charlie Scott",
         "Emily Hicks",
@@ -165,12 +173,13 @@ Let's use the NameRegistry class function (defined above) to work with an array 
     weddingList.addName("Jeff Shoneman");
     weddingList.removeNameLike("o");
     weddingList.removeNameLike("Brady");
+```
 
 Here we create one instance of the NameRegistry class and store it in the variable named "weddingList". Then we call the addName method twice on the wedding instance/object. Next, we call the removeNameLike method twice.
 
 Method chaining means we can chain multiple method calls together on the source instance/object. Here is what we would like to do:
 
-    :::JavaScript
+```javascript
     var RANDOM_NAMES = [
         "Charlie Scott",
         "Emily Hicks",
@@ -186,6 +195,7 @@ Method chaining means we can chain multiple method calls together on the source 
         .addName("Jeff Shoneman")
         .removeNameLike("o")
         .removeNameLike("Brady");
+```
 
 Note: there is no repetition of the weddingList variable and it reads more naturally. Think of it this way:
 
@@ -195,7 +205,7 @@ In order for method chaining to work, each method call / invocation must return 
 
 To make the above method chaining work, we need to modify the methods of the NameRegistry class. Notice that each method now returns the source object by returning `this`   :
 
-    :::JavaScript
+```javascript
     function NameRegistry(names) {
         this.names = names;
         
@@ -218,4 +228,4 @@ To make the above method chaining work, we need to modify the methods of the Nam
             return this;
         }
     }
-
+```

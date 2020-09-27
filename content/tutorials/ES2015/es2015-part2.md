@@ -22,7 +22,7 @@ Strings declared with the back tick have some new options:
 
 Here's an example:
 
-    :::JavaScript
+```javascript
     function count(legs) {
         return 2*4;
     }
@@ -35,6 +35,7 @@ Here's an example:
 
 
     intro("John", "MIT", "bird")
+```
 
 The call to the intro function will return the following string:
 

@@ -95,24 +95,26 @@ files are structured in a way that groups the files by their types, as [seen her
 Say you have a route called "Favorites" and the route uses a controller. That
 means there will be three "favorite" files spread across three directories:
 
-    :::Text
+```text
     ▾ controllers/
         favorites.js
     ▾ routes/
         favorites.js
     ▾ templates/
         favorites.hbs
+```
 
 My Ember.js projects use the alternative layout structure:
 ["PODS"](https://ember-cli.com/user-guide/#pod-structure). With PODS the files
 are grouped by their entity, in this case there would be just one "favorites"
 folder to group everything related to favorites together:
 
-    :::Text
+```text
     ▾ favorites/
         controller.js
         route.js
         tempalte.hbs
+```
 
 This works nicely for the most part, but lacking in the following areas:
 

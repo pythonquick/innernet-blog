@@ -25,7 +25,7 @@ Let's consider an example. Let's suppose Judy needs to paint the ceiling of thre
 
 The snippet below will determine if Judy's cans of paint are enough to cover the above three rooms:
 
-    :::JavaScript
+```javascript
     function generateCircleAreaChecker(radius) {
         var aeraOfCircle = Math.PI * radius * radius;
 
@@ -51,12 +51,15 @@ The snippet below will determine if Judy's cans of paint are enough to cover the
     checkPaintCoverage({room: 'Closet', roomArea: 10, paintCircleRadius: 3});
     checkPaintCoverage({room: 'Bathroom', roomArea: 150, paintCircleRadius: 7});
     checkPaintCoverage({room: 'Second Floor', roomArea: 1000, paintCircleRadius: 10});
+```
 
 At the bottom of the snippet, we call the `checkPaintCoverage` function to check if the can of paint for each room will be enough. Here is the output on the console:
 
+```text
     YES! Enough paint to paint Closet
     YES! Enough paint to paint Bathroom
     NO... Not enough paint to paint Second Floor
+```
 
 **Side Note:**
 

@@ -22,16 +22,17 @@ This section looks at a subtle bug that can arise when closure functions are def
 
 Consider the following body of a simple HTML page:
 
-    :::HTML
+```html
     <body>
         <h3>Here are some buttons:</h3>
         <ul id='button-list'>
         </ul>
     </body>
+```
 
 Next, the page's JavaScript file initializes the list with three list items as soon as the page loads in the browser:
 
-    :::JavaScript
+```javascript
     $(document).ready(initDocument);
 
 
@@ -46,6 +47,7 @@ Next, the page's JavaScript file initializes the list with three list items as s
             listItem.append(button).appendTo(buttonList);
         }
     }
+```
 
 At first sight, one would assume that each button click would display a different alert message, but this is not the case.
 Each button click displays the message:
@@ -62,7 +64,7 @@ The problem is that the click handler-function does not capture the current valu
 
 One solution is to call a function that returns a click handler-function that's seeded with the current value of the idx variable:
 
-    :::JavaScript
+```javascript
     function makeClickHandler(idx) {
         return function() {
             alert('You clicked button ' + idx);
@@ -78,12 +80,13 @@ One solution is to call a function that returns a click handler-function that's 
             button.on('click', makeClickHandler(idx));
             listItem.append(button).appendTo(buttonList);
     }
+```
 
 Each time makeClickHandler gets called, it will return a new function. That returned function is still a closure because it references the idx parameter variable of the makeClickHandler function. But in this case that is a separate copy of the original idx variable and will not change.
 
 Another approach would be to put the entire list item creation into the function instead of merely returning the click-handler:
 
-    :::JavaScript
+```javascript
     function makeIndexListItem(idx) {
         var listItem = $('<li></li>');
         var button = $('<button>Button ' + idx + '</button>');
@@ -102,12 +105,13 @@ Another approach would be to put the entire list item creation into the function
             listItem.appendTo(buttonList);
         }
     }
+```
 
 This might be a good approach when some other functionality on the page might ant to create new list items - the makeIndexListItem function can then be reused.
 
 Lastly, another way of creating a separate function and seeding it with the current loop iteration's idx variable value, is to use the `bind` function method to create a new function that will pass the specified idx value as a parameter to the function that gets bound. See the last lesson on function methods: http://redmine.pma.space/projects/js-class/wiki/06-29-2016_Functions_part_2#bind-Create-a-new-wrapping-function.
 
-    :::JavaScript
+```javascript
     function initDocument() {
         var buttonList = $('#button-list');
         for (var idx=0; idx<3; idx++) {
@@ -119,6 +123,7 @@ Lastly, another way of creating a separate function and seeding it with the curr
             listItem.append(button).appendTo(buttonList);
         }
     }
+```
 
 Note: the new function created by the `bind` method wraps the function that it was called on - the inner function. It passes the index as the first `theIndex` parameter. So, what happens to the event parameter when the user clicks the button? The event object gets passed as a parameter to this wrapping function (the function returned by the call to `bind`), and the event object will then in turn get passed on to the inner function - as its second parameter. Since the inner function does not need the event object, it does not list a parameter variable for it. It only lists the first parameter as `theIndex`.
 
@@ -126,7 +131,7 @@ Note: the new function created by the `bind` method wraps the function that it w
 
 The following code example was taken from a project, and updated only slightly:
 
-    :::JavaScript
+```javascript
     function printRowsToTable(coffeeProduct, table){
         var tr = $('<tr></tr>');
         $('<td>' + coffeeProduct.name + '</td>').appendTo(tr);
@@ -145,6 +150,7 @@ The following code example was taken from a project, and updated only slightly:
         tr.append(buttonCell);
         table.append(tr);
     }
+```
 
 Here the delete button's click handler-function will fire as soon as the user clicks the button.
 BUT, the AJAX call will not fire. In fact, it will not even reach the AJAX call because the alert statement will run into an exception, saying that name is not an attribute of undefined.

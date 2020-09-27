@@ -12,7 +12,7 @@ The notes for this tutorial do not contain many notes. See the source code for t
 
 # The person.js source file
 
-    :::JavaScript
+```javascript
     /**
      * Simple Person class.
      * Represents a person with name and age.
@@ -25,6 +25,7 @@ The notes for this tutorial do not contain many notes. See the source code for t
         };
     }
     </code></pre>
+```
 
 **Note:**
 
@@ -40,7 +41,7 @@ Note: in the example below, only the following array methods will actually chang
 
 All the other array methods will return a new array as the return value
 
-    :::JavaScript
+```javascript
     function how_to_add_item_to_array() {
         LIST.push("hello");
         // following appears to work in Chrome:
@@ -146,3 +147,4 @@ All the other array methods will return a new array as the return value
         else
             return 0;
     }
+```

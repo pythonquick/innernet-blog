@@ -35,7 +35,7 @@ The `let` keyword has the following differences:
 
 The following function will fail with an error when called without a parameter, because the title variable is only defined in side the if-block, not the else-block:
 
-    :::JavaScript
+```javascript
     function testingLet(name) {
         if (name) {
             let title = 'Mister';
@@ -45,41 +45,45 @@ The following function will fail with an error when called without a parameter, 
             console.log('Hello ' + title + ' stranger');
         }
     }
+```
 
 The following function will also fail with an error:
 
-    :::JavaScript
+```javascript
     function testingLet(name) {
         let name = 'stranger';
         console.log('Hello ' + name);
     }
-
+```
 The error message will read:
 
-    :::JavaScript
+```javascript
     Uncaught SyntaxError: Identifier 'name' has already been declared
+```
 
 Note: if the `let` appears in a separate block than an existing variable with the same name, there's no problem when declaring the variable. With the `let` keyword, the block isolates the scope - not the function. To illustrate, the following function will not result in an error when called:
 
-    :::JavaScript
+```javascript
     function testingLet(name) {
         {
             let name = 'stranger';
             console.log('Hello ' + name);
         }
     }
+```
 
 ## The const keyword
 
 In earlier JavaScript versions, there was no way to declare a constant. Instead, we relied on naming conventions, like using ALL-UPPERCASE variables to hold "constants".
 With ES2015 the new `const` keyword declares a constant. If the function attempts to assign a new value to the constant, there will be an error message. For example, the following function defines a NAME constant constant with the String-value of "Precilla". When the next line attempts to assign a new value, it will fail:
 
-    :::JavaScript
+```javascript
     function func1() {
         const NAME = "Precilla";
         NAME = 'Mike';
         return "Miss " + NAME;
     }
+```
 
 The error message will read: 
 

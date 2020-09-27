@@ -14,7 +14,7 @@ jQuery provides the `on` method. Once you selected the target elements using a j
 
 Here is a sample HTML page with a table:
 
-    :::HTML
+```html
     <html>
         <head>
             <link rel='stylesheet' type='text/css' href='index.css'>
@@ -42,11 +42,12 @@ Here is a sample HTML page with a table:
             <script src='index.js'></script>
         </body>
     </html>
+```
 
 You can see the table has one heading row with heading cells (`th`) and two rows of regular cells (`td`). The page imports the jquery.js file which is needed for jQuery. 
 The other imported script file is index.js and looks as follows:
 
-    :::JavaScript
+```javascript
     function headingClicked() {
         alert('You clicked cell a heading');
 
@@ -68,6 +69,7 @@ The other imported script file is index.js and looks as follows:
         $('#MyTable td').on('mouseover', doMouseOver);
         $('#MyTable td').on('mouseout', doMouseOut);
     });
+```
 
 When the page loaded, the function that was passed into the jQuery ready function will be called (see the bottom part of the JavaScript file above).
 Here, it sets up three event handlers:

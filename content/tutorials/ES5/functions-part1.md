@@ -14,12 +14,13 @@ This is the first part in the series of functions. These tutorials will help to 
 
 Consider the following `sumItUp` function and the call to it:
 
-    :::JavaScript
+```javascript
     function sumItUp() {
         var sum = 0;
         return sum;
     }
     sumItUp(1, 2, 3, 4, 5, 6, 7);
+```
 
 Even though the sumItUp function gets called with 7 parameters, the return value is 0.
 The caller wants the function to return the sum of all the supplied parameter values, and the number of parameters is not fixed -- it should work with any number of parameters.
@@ -27,7 +28,7 @@ The caller wants the function to return the sum of all the supplied parameter va
 Each function has access to a special `arguments` object. This object is like an array and it contains the values of all parameters that were passed in to the function.
 Here is how to use it in the function:
 
-    :::JavaScript
+```javascript
     function sumItUp() {
         var sum = 0;
         for (var idx=0; idx<arguments.length; idx++) {
@@ -36,13 +37,13 @@ Here is how to use it in the function:
         return sum;
     }
     sumItUp(1, 2, 3, 4, 5, 6, 7);
-
+```
 
 # Variable hoisting
 
 Suppose we have a function that displays a welcome message to a team. By running this function in the inspector and pausing the execution (see the debugger statement), we can inspect the "local" scope in the inspector. It displays all variables declared inside the function and all the parameters supplied.
 
-    :::JavaScript
+```javascript
     function displayWelcomeMessage(teamName, teamSize) {
         var message = 'Welcome ' +  teamName;
         debugger
@@ -56,11 +57,13 @@ Suppose we have a function that displays a welcome message to a team. By running
         }
         console.log(message);
     }
+```
 
 Assume we call the function as follows:
 
-    :::JavaScript
+```javascript
     displayWelcomeMessage('A-Team', 5);
+```
 
 When the debugger pauses at the debugger statement, it will show the following items in the local scope (apart from the "this" reference):
 
@@ -76,13 +79,14 @@ The doubleTheTeamSize variable is declared later in the function, and it won't e
 For the next section, assume the page has the jQuery library loaded in a separate script tag.
 The following code will set up the function `pageHasFullyLoaded` to be run when the browser loaded the page fully.
 
-    :::JavaScript
+```javascript
     function pageHasFullyLoaded(myParam) {
         debugger
         alert('page has fully loaded');
     }
 
     $(document).ready(pageHasFullyLoaded);
+```
 
 Notes about the `pageHasFullyLoaded` function:
 
@@ -94,7 +98,7 @@ Notes about the `pageHasFullyLoaded` function:
 
 Consider the following function that prints a greeting message:
 
-    :::JavaScript
+```javascript
     function greet(name, title) {
         if (!name) {
             name = 'our respected guest';
@@ -109,6 +113,8 @@ Consider the following function that prints a greeting message:
         }
         return "Welcome to the resort, " + addressee;
     }
+```
+
 It checks if the parameter values were supplied, by checking the values for truthiness. If the values are not truty (e.g. when not supplied as parameters), it uses defaults.
 
 Remember, the following values are not truthy (they are falsy):
@@ -122,29 +128,32 @@ All other things in JavaScript are considered as "truthy".
 
 Now, consider the following function that supplies a default value of 5 if the parameter is falsy:
 
-    :::JavaScript
+```javascript
     function rating(stars) {
         if (!stars) {
             stars = 5;
         }
         return "The safety rating is " + stars;
     }
+```
 
 There is a potential problem with this.
 If zero (0) is a valid safety rating, then the following call will return the string "The safety rating is 5", but we're expecting "The safety rating is 0":
 
-    :::JavaScript
+```javascript
     rating(0);
+```
 
 In this case, we need to be more specific when checking for the missing value. In this case, instead of merely checking for falsiness, check if the value is undefined. When someone calls the rating function with no parameters, the stars parameter will be undefined.
 
-    :::JavaScript
+```javascript
     function rating(stars) {
         if (stars === undefined) {
             stars = 5;
         }
         return "The safety rating is " + stars;
     }
+```
 
 # Alternative default values using the OR operator
 
@@ -164,29 +173,32 @@ We can use this behavior to conveniently supply a default value if something is 
 
 For example, let's say we have the following object with three attributes:
 
-    :::JavaScript
+```javascript
     var game = {
         homeTeam: "USA",
         guestTeam: "Argentina",
         referee: "Mexico"
     };
+```
 
 Let's say we have a function that takes an object, and returns the value of a given attribute:
 
-    :::JavaScript
+```javascript
     function getValueOrDefault(object, attribute) {
         return object[attribute];
     }
 
     getValueOrDefault(game, 'stadium');
+```
 
 When calling the function with the 'stadium' attribute (second parameter), it will return undefined.
 That is because our game object does not have a stadium attribute. If we want the getValueOrDefault function to return a default value of "Unknown attribute", we can do it as follows:
 
-    :::JavaScript
+```javascript
     function getValueOrDefault(object, attribute) {
         return object[attribute] || "Unknown attribute";
     }
+```
 
 # Method functions
 
@@ -194,15 +206,16 @@ When functions are part of an object, we refer to them as "method functions" or 
 
 Let's say we want to construct Person objects:
 
-    :::JavaScript
+```javascript
     var leader = new Person("Jeff", "Shoneman");
     var intern = new Person("Sergio", "Torres Gonzalez");
+```
 
 The `new` keyword in JavaScript creates a new (empty) object and initializes it with the given "constructor function". In this example, we need a constructor function named Person. We also call Person the "class" and the objects (in this case leader and intern) are the "instances" of the class. Note: the words instances and objects are interchangeable.
 
 Here is a Person constructor function needed so that the above will work:
 
-    :::JavaScript
+```javascript
     function Person(firstName, lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -214,13 +227,14 @@ Here is a Person constructor function needed so that the above will work:
             return greeting + '. My name is ' + this.fullName() + '\n' + intro;
         }
     }
+```
 
 Note, that the constructor function uses the `this` keyword. When using the `new` keyword to create new instances, there will be a new object and this new object is set up as the context of the constructor function. That means, inside the constructor function, `this` refers to the new object.
 The constructor function adds four attributes to the new object. the attributes firstName and lastName are simply the parameter values passed in. The fullName and introduct attributes have functions as their values
 
 Next, it's possible to call the -function- method of the Person instance:
 
-    :::JavaScript
+```javascript
     leader.introduce('Good morning', 'let us get started')
-
+```
 

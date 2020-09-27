@@ -111,7 +111,7 @@ In the example module below, a process is spawned that keeps track of a count,
 that can be incremented or decremented, depending on the message passed to the
 process:
 
-    :::Elixir:::
+```elixir
     defmodule Counter do
       def start(initial_value) do
         spawn fn -> count(initial_value) end
@@ -129,6 +129,7 @@ process:
         end
       end
     end
+```
 
 Calling the `start` function spawns a new process using the `spawn` function that
 takes one argument: a function to run. In this case, the anonymous function
@@ -150,7 +151,7 @@ count function as an argument.
 
 Below is a sample of how the above Counter module can be used:
 
-    :::Elixir:::
+```elixir
     # Create a new Counter process, and
     # initialize the counter to 10:
     pid = Counter.start(10)
@@ -174,6 +175,7 @@ Below is a sample of how the above Counter module can be used:
     receive do
       value -> IO.puts "Value is #{value}"
     end
+```
 
 Erlang comes with a whole framework for managing processes, called OTP - the
 Open Telecom Platform. One of the constructs that encapsulates the process
@@ -182,7 +184,7 @@ respond to synchronous and asynchronous calls. For each type of call, the
 GenServer manages the state. It takes care of the receive loops. The Counter can
 be written as follows to be a GenServer:
 
-    :::Elixir:::
+```elixir
     defmodule Counter do
       use GenServer
 
@@ -208,6 +210,7 @@ be written as follows to be a GenServer:
         {:reply, count, count}
       end
     end
+```
 
 In this example, the Counter GenServer accepts "cast" (asynchronous) and "call"
 (synchronous) invocations. The above example has two `handle_cast` function
@@ -221,7 +224,7 @@ atom. The call on the other hand is synchronous and returns a value.
 
 Here is an example of using the Counter as a GenServer:
 
-    :::Elixir:::
+```elixir
     # Create a new Counter GenServer,
     # and initialize the counter to 10:
     {:ok, pid}
@@ -234,6 +237,7 @@ Here is an example of using the Counter as a GenServer:
     GenServer.cast(pid, {:subtract, 3})
     value = GenServer.call(pid, :value)
     IO.puts "The value is #{value}"
+```
 
 # The master node
 
@@ -248,7 +252,7 @@ was used, which handles arbitrary precision numeric values.
 Here is the Elixirpi.Collector module, somewhat simplified compared to the
 version on [GitHub](https://github.com/pythonquick/elixirpi):
 
-    :::Elixir:::
+```elixir
     defmodule Elixirpi.Collector do
       use GenServer
       alias Decimal, as: D
@@ -284,13 +288,15 @@ version on [GitHub](https://github.com/pythonquick/elixirpi):
 
       # ... a few more private functions omited
     end
+```
 
 In the `start` function, the `Enum.reduce` function takes each item of the range
 (10000..0) and successively adds it to the accumulator construct, which is
 initially the empty list: []:
 
-    :::Elixir:::
+```elixir
     digit_positions = Enum.reduce(@trg_digits..0, [], &([&1 | &2]))
+```
 
 This results in a list of integer values from 0 up to 10000 inclusive.
 
@@ -303,8 +309,9 @@ items:
 
 Note: the PID of the master node is registered in a global registry:
 
-    :::Elixir:::
+```elixir
     :global.register_name(:collector_process_name, pid)
+```
 
 This way, other nodes can look up the PID of the master node, even if they are
 on a different host on the network.
@@ -318,7 +325,7 @@ sends back the results to the master node.
 
 Here is a simplified module listing of the worker node:
 
-    :::Elixir:::
+```elixir
     defmodule Elixirpi.Worker do
       alias Elixirpi.Collector
       alias Decimal, as: D
@@ -382,7 +389,7 @@ Here is a simplified module listing of the worker node:
       # ... a few more private functions omited
 
     end
-
+```
 
 In the `process_next_digits` function, it fetches the next chunk of digit
 positions to calculate. Then, for each digit position, call `Task.async_stream`

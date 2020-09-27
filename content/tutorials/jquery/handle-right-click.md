@@ -15,37 +15,40 @@ The browser normally implements its own default action when the user does a righ
 
 Regular left-click actions can be used by specifying a handler function for the 'click' event:
 
-    :::JavaScript
+```javascript
     var menuButton = document.getElementById('menuBtn');
     menuButton.addEventListener('click', function(e) {
         // handle the click event
     });
+```
 
 Any right-click action will not trigger the 'click' event however.
 
 Other mouse events like mousedown and mouseup react to all types of click events, whether the user uses the left, middle or right mouse button:
 
-    :::JavaScript
+```javascript
     var menuButton = document.getElementById('menuBtn');
     menuButton.addEventListener('mousedown', function(e) {
         alert('mouse down event with button index ' + e.button);
     });
+```
 
 The above snippet will capture the right-click action. To determine whether the user clicked the left or the right button, the `button` attribute of the event object can be used. A value of 0 means left button and 2 means right button was clicked.
 
 Note: with the above snippet, when the user does a right-click the browser will still show the default context menu. There's an additional event that fires when the user clicks the right mouse button: the `contextmenu` event. To prevent the browser's default right-click behavior, we can handle the `contextmenu` event and prevent the default behavior by calling the `preventDefault` method on the event object:
 
-    :::JavaScript
+```javascript
     var menuButton = document.getElementById('menuBtn');
     menuButton.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
+```
 
 Without the `preventDefault()` call, the `contextmenu` event would "bubble up" to any further event listeners, and eventually the browser's listener would handle the `contextmenu` event and show the context menu.
 
 To see this in action, here is the code to handle different click events inside the 'clickbox' DIV box below:
 
-    :::JavaScript
+```javascript
     var clickbox = document.getElementById('clickbox');
     clickbox.addEventListener('mousedown', function(e) {
         var buttonSide = e.button === 0 ? 'left' : 'right';
@@ -54,7 +57,9 @@ To see this in action, here is the code to handle different click events inside 
     clickbox.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
+```
 
+```html
 <div id='clickbox' style='background-color: #ddddee; padding: 2em'>
     This is the clickbox. Click inside to test mouse click events!
     <hr>
@@ -62,5 +67,6 @@ To see this in action, here is the code to handle different click events inside 
     <img src='/extras/cat.png'>
 </div>
 <script src="/extras/handle-right-click.js"></script>
+```
 
 

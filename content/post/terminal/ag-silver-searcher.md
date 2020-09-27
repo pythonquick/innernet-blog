@@ -20,23 +20,26 @@ When searching for a pattern that is all lowercase, Ag will search case-insensit
 
 For example:
 
-    :::Bash
+```bash
     ag elixir
+```
 
 This will match both "elixir" and "Elixir" in files in the current directory or deeper.
 
 To search case-sensitively, add the `-s` option:
 
-    :::Bash
+```bash
     ag elixir -s
+```
 
 This will only match occurrences of "elixir" but not "Elixir".
 
 When the search term uses mixed case, Ag will automatically search case-sensitively.
 This is referred to as "smart case"
 
-    :::Bash
+```bash
     ag Elixir
+```
 
 This will match both "Elixir" but not "elixir".
 
@@ -49,50 +52,61 @@ To avoid excessive escape characters, it's easier to surround the pattern in quo
 
 #### Find lines starting with "init(), but indented by at least one white-space character":
 
-    :::Bash
+```bash
     ag "^\s+init\(\)"
+```
 
 #### Find whole word "row" match:
 
-    :::Bash
+```bash
     ag "\brow\b"
+```
 
 #### Find blank lines:
 
-    :::Bash
+```bash
     ag "^$"
+```
 
 #### Find locations with 2 or more consecutive blank lines:
-    :::Bash
+```bash
     ag "^\n{2,}"
+```
 
 #### Same as before, but "blank" lines may include whitespace:
-    :::Bash
+```bash
     ag "^(\s*\n){2,}"
+```
 
 #### Find lines ending with `',`
-    :::Bash
+```bash
     ag "',$"
+```
 
 #### Find lines starting with "import Route":
-    :::Bash
+```bash
     ag "^import Route"
+```
 
 #### Find match "height" if it's preceded by either "max" or "avail":
-    :::Bash
+```bash
     ag "(max|avail)height"
+```
 
 #### Find all 3 or 4 digit numbers:
-    :::Bash
+```bash
     ag "\b\d{3,4}\b"
+```
 
 #### Find all 24-character words:
-    :::Bash
+```bash
     ag "\b\w{24}\b"
+```
 
 #### find all date format strings in quotes, e.g. "YYYY-MM-DD":
-    :::Bash
+```bash
     ag "['\"][ymd-]{4,12}['\"]"
+```
 
 ## Search within specific file types or file patterns
 
@@ -105,13 +119,15 @@ or use the `-G` switch to match the file name. For example, to search only Ruby 
 where the file name ends with "_controller.rb", find lines that assign a new
 Service instance:
 
-    :::Bash
+```bash
     ag "= \w+Service\.new\b" -G _controller\.rb
+```
 
 Or, within Ruby files, find lines that assign a new class instance:
 
-    :::Bash
+```bash
     ag "= \w*\.new\b" --ruby
+```
 
 ## Literal match
 
@@ -121,6 +137,7 @@ want to treat those characters as part of a regex, use the `Q` option, which mea
 
 For example, find occurrences of "height()" literally:
 
-    :::Bash
+```bash
     ag "height()" -Q
+```
 

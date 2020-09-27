@@ -20,30 +20,32 @@ First, let's look at some other means of making asynchronous calls. The built-in
 
 The JavaScript `setTimeout` function can be used to call a function in the future, by specifying the function to be called and the time (in milliseconds) to wait until the function gets called. Here's an example:
 
-    :::JavaScript
+```javascript
     function sayHello() {
         alert('hello');
     }
 
     setTimeout(sayHello, 5000);
+```
 
 Here, the sayHello function will show an alert popup box with the text "hello", but only after 5 seconds.
 
 The function `setInterval` will also call the function after the specified delay, but it will repeatedly call the function:
 
-    :::JavaScript
+```javascript
     function sayHello() {
         alert('hello');
     }
 
     setInterval(sayHello, 5000);
+```
 
 Here, the sayHello function will be called every 5 seconds.
 Note: when using `setTimeout` or `setInterval`, the queued function call can be canceled. To cancel the call, use the JavaScript built-in function `clearTimeout` which takes the timer ID returned by a previous call to `setTimeout` or `setInterval`.
 
 For example, the following will start a recurring call to function logGreeting every second. After 8 seconds, it will stop and cancel the recurring function calls:
 
-    :::JavaScript
+```javascript
     function logGreeting() {
         console.log('hello at ' + new Date());
     }
@@ -53,6 +55,7 @@ For example, the following will start a recurring call to function logGreeting e
     setTimeout(function() {
         clearTimeout(timerId);
     }, 8000);
+```
 
 # jQuery done method
 
@@ -62,7 +65,7 @@ The `done` method can be called on the jqXHR object to attach a function that wi
 
 Consider the following function that makes a call to the Open Weather API server:
 
-    :::JavaScript
+```javascript
     var API_KEY = '05e394dfc3d1b822698f06d759bc4c95';
     var WEATHER_SERVICE_URL = 'http://api.openweathermap.org/data/2.5/weather';
 
@@ -83,17 +86,19 @@ Consider the following function that makes a call to the Open Weather API server
             }
         });
     }
+```
 
 This function first adds a new `<li>` tag to the parent page's `<ul>` list with the ID of "weatherlist". It makes a call to api.openweathermap.org for the specified city. When the request gets back the weather data, it adds the weather description and temperature.
 Note that this function returns the jqXHR object returned by the jQuery AJAX function. In this case it calls the $.get helper function.
 
 Here's a function that uses the jQuery `done` methods on the jqXHR object returned by the fetchWeather function:
 
-    :::JavaScript
+```javascript
     fetchWeather('boston', 'usa')
         .done( function() { fetchWeather('lima', 'peru'); })
         .done( function() { fetchWeather('nashua', 'usa'); })
         .done( function() { fetchWeather('hannover', 'germany'); });
+```
 
 When looking at the network requests in the Chrome Inspector's Network tab, we see that the weather requests for lima, nashua and hannover happen after the first request for boston. 
 
@@ -101,11 +106,12 @@ When looking at the network requests in the Chrome Inspector's Network tab, we s
 
 The last three requests basically start simultaneously. This is because the requests for lima, nashua and hannover are all attached as "`done`" handlers to the original boston request. The `done` method returns the original jqXHR object, allowing multiple method calls to be chained. That means the above is equivalent to doing the following:
 
-    :::JavaScript
+```javascript
     var bostonRequest = fetchWeather('boston', 'usa');
     bostonRequest.done( function() { fetchWeather('lima', 'peru'); });
     bostonRequest.done( function() { fetchWeather('nashua', 'usa'); });
     bostonRequest.done( function() { fetchWeather('hannover', 'germany'); });
+```
 
 # jQuery Deferred object
 
@@ -122,7 +128,7 @@ If we need more control over a promise - like when the promise is fulfilled or r
 
 Here's one example of using a jQuery Deferred object to fetch the weather slowly:
 
-    :::JavaScript
+```javascript
     function fetchWeatherSlowly(city, country, prevCountry) {
         var promise = $.Deferred();
         var weatherRequest = fetchWeather(city, country, prevCountry);
@@ -138,6 +144,7 @@ Here's one example of using a jQuery Deferred object to fetch the weather slowly
         });
         return promise;
     }
+```
 
 The Deferred object (the promise) will resolve 2 seconds after the AJAX request from the fetchWeather call returns a response.
 
@@ -149,7 +156,7 @@ There are cases when an AJAX call depends on a previous AJAX call's response. If
 
 Here's an example that fetches the whether of a few cities, but sequentially (not in parallel):
 
-    :::JavaScript
+```javascript
     fetchWeather('boston', 'usa')
         .then( function(bostonResponse) {
             console.log('got boston!', bostonResponse); 
@@ -176,6 +183,7 @@ Here's an example that fetches the whether of a few cities, but sequentially (no
             console.log('got hannover!', hannoverResponse);
             return fetchWeather('canton', 'usa'); 
         });
+```
 
 In Chrome Inspector's network tab, we see that the requests run sequentially - one after the other:
 
@@ -189,7 +197,7 @@ Sometimes we need to know when a set of promises have completed. jQuery's Deferr
 
 Here's an example that loads cities from three continents. As soon as all cities of a continent have loaded, a banner gets displayed on the page:
 
-    :::JavaScript
+```javascript
     var amsterdam        = fetchWeather('amsterdam', 'netherlands');
     var athens           = fetchWeather('athens', 'greece');
     var barcelona        = fetchWeather('barcelona', 'spain');
@@ -218,7 +226,6 @@ Here's an example that loads cities from three continents. As soon as all cities
     var toronto          = fetchWeather('Toronto', 'canada');
     var vancouver        = fetchWeather('Vancouver', 'canada');
 
-
     $.when(rome, paris, barcelona, london, amsterdam, dublin, athens, edinburgh, berlin, milan)
         .then(function() {
             $('#continents').append('<div>EUROPE loaded</div>');
@@ -233,6 +240,7 @@ Here's an example that loads cities from three continents. As soon as all cities
         .then(function() {
             $('#continents').append('<div>AFRICA loaded</div>');
         });
+```
 
 Here is a screenshot, showing loading of the requests and the banners that appear when each continent's group finished loading:
 
