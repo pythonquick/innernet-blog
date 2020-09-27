@@ -3,3 +3,4 @@ Makefile
 publish.sh
 output
 *.pyc
+hugo/public
