@@ -1,7 +1,11 @@
-Title: SQL Server: Make a column an identity
-Date: 2017-10-13
-Category: Database
-Tags: MSSQL
+---
+title: "SQL Server: Make a column an identity"
+date: 2017-10-13
+category:
+- database
+tags:
+- MSSQL
+---
 
 In SQL Server, columns can be defined as an identity column. With an identity
 column, each newly inserted row will get a new unique value in the identity

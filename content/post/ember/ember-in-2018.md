@@ -1,8 +1,13 @@
-Title: Ember in 2018 and Beyond
-Date: 2018-05-26
-Category: Ember
-Tags: ember, JavaScript
+---
+title: "Ember in 2018 and Beyond"
+date: 2018-05-26
+category:
+- ember
+tags:
+- ember
+- JavaScript
 slug: ember-in-2018-and-beyond
+---
 
 The Ember.js team recently called for feedback on how to improve the framework.
 This will be used to shape the roadmap for future features and direction.

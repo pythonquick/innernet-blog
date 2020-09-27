@@ -1,8 +1,14 @@
-Title: ag - the silver searcher
-Date: 2020-01-20
-Category: terminal
-Tags: terminal,vim
+---
+title: "ag - the silver searcher"
+date: 2020-01-20
+section: aaa
+category:
+- terminal
+tags:
+- terminal
+- vim
 slug: ag-the-silver-searcher
+---
 
 [Ag](https://geoff.greer.fm/ag/) is an open-source command line search tool similar to grep, just much faster.
 

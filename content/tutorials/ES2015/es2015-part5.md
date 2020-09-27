@@ -1,7 +1,12 @@
-Title: ES2015 Part 5: Destructuring
-Date: 2016-10-19
-Category: Tutorials
-Tags: JavaScript, ES2015
+---
+title: "ES2015 Part 5: Destructuring"
+date: 2016-10-19
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES2015
+---
 
 Part 5 in the series of ES2015 deals with destructuring: with arrays and with objects.
 

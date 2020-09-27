@@ -1,7 +1,12 @@
-Title: ES2015 Part 3: Arrow Functions
-Date: 2016-09-02 11:00
-Category: Tutorials
-Tags: JavaScript, ES2015
+---
+title: "ES2015 Part 3: Arrow Functions"
+date: 2016-09-02 11:00
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES2015
+---
 
 Part 3 looks at a new way of declaring functions.
 

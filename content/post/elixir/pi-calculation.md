@@ -1,8 +1,14 @@
-Title: Calculate pi on Raspberry using Elixir
-Date: 2018-03-14
-Category: Elixir
-Tags: raspberry-pi,elixir
+---
+title: "Calculate pi on Raspberry using Elixir"
+date: 2018-03-14
+category:
+- elixir
+featured: true
+tags:
+- raspberry-pi
+- elixir
 slug: calculate-pi-on-raspberry-using-elixir
+---
 
 Elixir is a modern, functional programming language, based on the Erlang runtime
 environment. Erlang has a long history of being a robust platform for building

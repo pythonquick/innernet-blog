@@ -1,7 +1,12 @@
-Title: ES2015 Part 2: Variable declaration
-Date: 2016-09-02 10:00
-Category: Tutorials
-Tags: JavaScript, ES2015
+---
+title: "ES2015 Part 2: Variable declaration"
+date: 2016-09-02 10:00
+category:
+- tutorials
+tags:
+- JavaScript
+- ES2015
+---
 
 Part 2 in the series of ES2015 looks at a new way of defining strings, with the ability to substitute variables into place-holders.
 

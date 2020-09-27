@@ -1,7 +1,12 @@
-Title: Functions. Part 2
-Date: 2016-06-29
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Functions. Part 2"
+date: 2016-06-29
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 This tutorial focuses on three methods of all function objects: `apply`, `call` and `bind`.
 

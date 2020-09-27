@@ -1,7 +1,12 @@
-Title: Promises in jQuery
-Date: 2016-08-17
-Category: Tutorials
-Tags: JavaScript, jQuery
+---
+title: "Promises in jQuery"
+date: 2016-08-17
+category:
+- Tutorials
+tags:
+- JavaScript
+- jQuery
+---
 
 In the recent lesson about AJAX we saw how to make a server request in the background (asynchronous), and then handling the server response in a function. If a second asynchronous server request depends on the first one, it becomes messy to manage the dependencies. For example, the second asynchronous server request can be initiated in the response handler function of the first server request. This leads to long chains of calls that can be hard to read and make sense of.
 

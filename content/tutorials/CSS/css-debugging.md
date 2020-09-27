@@ -1,7 +1,11 @@
-Title: CSS Debugging
-Date: 2015-12-22
-Category: Tutorials
-Tags: CSS
+---
+title: "CSS Debugging"
+date: 2015-12-22
+category:
+- tutorials
+tags:
+- CSS
+---
 
 This is a recap of a recent tutorial about CSS and the Chrome Inspector at my company.
 

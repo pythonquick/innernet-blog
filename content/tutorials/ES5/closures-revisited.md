@@ -1,7 +1,12 @@
-Title: Closures Revisited
-Date: 2016-07-20
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Closures Revisited"
+date: 2016-07-20
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 The lesson covers some aspects of closures and some gotchas. 
 For an introduction about the concept of closures, see the past lesson notes on [closure functions](/closure-functions.html)

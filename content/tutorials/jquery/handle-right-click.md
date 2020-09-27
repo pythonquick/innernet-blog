@@ -1,7 +1,11 @@
-Title: Handle right-click browser event
-Date: 2016-11-15
-Category: Tutorials
-Tags: JavaScript
+---
+title: "Handle right-click browser event"
+date: 2016-11-15
+category:
+- Tutorials
+tags:
+- JavaScript
+---
 
 A few months ago, a friend of mine claimed that it's probably very tricky to handle the right-click mouse event on a web page, since the browser already handles the right-click event. "How difficult can that be?", i thought to myself.
 

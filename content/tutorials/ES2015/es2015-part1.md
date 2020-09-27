@@ -1,7 +1,11 @@
-Title: ES2015 Part 1: Variable declaration
-Date: 2016-09-02 09:00
-Category: Tutorials
-Tags: JavaScript, ES2015
+---
+title: "ES2015 Part 1: Variable declaration"
+date: 2016-09-02 09:00
+category:
+- Tutorials
+tags:
+- JavaScript, ES2015
+---
 
 Some background around JavaScript specifications:
 

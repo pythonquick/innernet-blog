@@ -1,7 +1,12 @@
-Title: AJAX calls
-Date: 2016-07-27
-Category: Tutorials
-Tags: JavaScript, jQuery
+---
+title: "AJAX calls"
+date: 2016-07-27
+category:
+- Tutorials
+tags:
+- JavaScript
+- jQuery
+---
 
 
 AJAX stands for asynchronous JavaScript and and XML. This allows a single page in the browser to make requests to the server without reloading the entire page.

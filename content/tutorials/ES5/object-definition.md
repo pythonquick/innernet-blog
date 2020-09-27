@@ -1,7 +1,12 @@
-Title: Object Definition
-Date: 2016-01-06
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Object Definition"
+date: 2016-01-06
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 This document is a review of the JavaScript class on 01/06/2016 at my company. Note: this tutorial focuses on the JavaScript ES5 specification, and therefore does not cover the ES2016 `class` syntax.
 

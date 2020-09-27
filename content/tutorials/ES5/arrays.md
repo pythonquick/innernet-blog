@@ -1,7 +1,12 @@
-Title: Arrays
-Date: 2016-01-13
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Arrays"
+date: 2016-01-13
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 The notes for this tutorial do not contain many notes. See the source code for the different array operations. 
 

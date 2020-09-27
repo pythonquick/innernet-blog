@@ -1,7 +1,12 @@
-Title: Event handling with jQuery
-Date: 2015-12-22
-Category: Tutorials
-Tags: JavaScript, jQuery
+---
+title: "Event handling with jQuery"
+date: 2015-12-22
+category:
+- Tutorials
+tags:
+- JavaScript
+- jQuery
+---
 
 The following example uses jQuery to handle browser events. The event-handling can be done with raw DOM objects, but jQuery provides a nice interface for dealing with the DOM. Also, some browsers have different DOM object implementation and behavior. jQuery takes care of any differences between browsers and versions and provides a consistent interface for handling page elements and events.
 

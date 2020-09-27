@@ -1,7 +1,12 @@
-Title: ES2015 Part 4: Rest and Spread operators
-Date: 2016-09-23
-Category: Tutorials
-Tags: JavaScript, ES2015
+---
+title: "ES2015 Part 4: Rest and Spread operators"
+date: 2016-09-23
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES2015
+---
 
 Part 4 in the series of ES2015 deals with the new JavaScript operators: rest and spread
 

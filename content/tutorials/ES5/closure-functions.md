@@ -1,7 +1,12 @@
-Title: Closure Functions
-Date: 2016-03-03
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Closure Functions"
+date: 2016-03-03
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 Quick definition of a closure in JavaScript:
 

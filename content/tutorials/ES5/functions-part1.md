@@ -1,7 +1,12 @@
-Title: Functions. Part 1
-Date: 2016-06-22
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Functions. Part 1"
+date: 2016-06-22
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 This is the first part in the series of functions. These tutorials will help to deal with functions declaration, scoping, parameters, default values and methods.
 

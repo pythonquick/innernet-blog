@@ -1,7 +1,12 @@
-Title: Objects Revisited
-Date: 2016-02-04
-Category: Tutorials
-Tags: JavaScript, ES5
+---
+title: "Objects Revisited"
+date: 2016-02-04
+category:
+- Tutorials
+tags:
+- JavaScript
+- ES5
+---
 
 
 This section serves as a review of Objects in JavaScript, and visualizing their structure.
