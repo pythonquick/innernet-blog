@@ -15,7 +15,8 @@
     display: flex
     flex: 1
   &_header
-    background-color: $bg
+    // orig background-color: $bg
+    background-color: $header_bg
     padding: 0 1.5rem
     position: fixed
     width: 100%
@@ -112,8 +113,9 @@
     position: relative
 
 .button
-  background-color: $theme
-  color: $light
+  // orig background-color: $theme
+  background-color: $buttonbg
+  color: var(--dark)
   display: inline-flex
   padding: 0.5rem 1.5rem
   text-transform: uppercase
@@ -377,6 +379,7 @@
         grid-gap: 1rem
 .sidebar
   &_inner
+    color: var(--header-text)
     position: relative
     &::before
       content: ""
