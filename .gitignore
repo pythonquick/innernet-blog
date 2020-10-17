@@ -4,4 +4,5 @@ publish.sh
 output
 *.pyc
 hugo/public
+hugo/resources/_gen
 blog-topics.txt
