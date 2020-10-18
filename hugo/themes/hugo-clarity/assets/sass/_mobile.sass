@@ -32,7 +32,7 @@
       align-items: center
       svg
         width: 1.25rem
-        fill: var(--light)
+        //fill: var(--light)
         height: 1.25rem
         display: none
         &:first-child
@@ -67,6 +67,7 @@
       bottom: 0
     .nav
       &_body
+        background-color: $header_bg
         transform: translateX(0)
         padding-left: 1.5rem
         padding-right: 1.5rem
@@ -78,3 +79,13 @@
         justify-content: flex-start
         flex: initial
         margin-top: 0.75rem
+
+  .nav_body_left
+    padding-top: 2em
+
+  .content, .footer
+    padding: 0
+  article
+    border-radius: 0
+    margin: 0
+
