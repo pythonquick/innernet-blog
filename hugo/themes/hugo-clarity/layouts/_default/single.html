@@ -12,7 +12,6 @@
     {{- partial "i18nlist" . }}
     <h1 class='post_title'>{{ .Title }}</h1>
     {{- partial "post-meta" . }}
-    {{ partial "share" . }}
     {{ with .Params.featureImage }}
     <img src = '{{ . }}' class="image_featured">
     {{ end }}
