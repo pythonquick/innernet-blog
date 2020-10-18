@@ -201,12 +201,15 @@
     align-items: center
     .button
       margin-bottom: 0
+    svg.icon
+      fill: $theme
   &_date
     margin-right: 0.5rem
     margin-left: 0.25rem
   &_content
     a
-      color: $theme
+      // color: $theme
+      color: $linkcolor
     ul, ol
       list-style: initial
       padding: 0.5rem 1.25rem
@@ -214,6 +217,8 @@
         padding-top: 0.25rem
     ol
       list-style: decimal
+    .post_tag
+      color: $theme
 
 .scrollable
   display: grid
