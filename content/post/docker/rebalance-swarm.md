@@ -113,8 +113,8 @@ for service in `docker service ls | awk '($2 != "viz" && $2 != "NAME") { print $
       # Rebalance the containers by first scaling down, then up
       docker service scale ${service}=${container_node_count}
       docker service scale ${service}=${replicas}
-	else
-	  echo "service ${service} can be rebalanced when adding a node"
+    else
+      echo "service ${service} can be rebalanced when adding a node"
     fi
   else
     echo "service ${service} does not need to be rebalanced"
